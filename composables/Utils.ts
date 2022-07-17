@@ -50,11 +50,13 @@ export class BiGram {
     if (separators) {
       return this.createBiGramObjectFromTexts(this.splitBy(text, separators));
     } else {
+      text = text.toLocaleLowerCase();
       let returnObject: { [key: string]: true } = {};
       for (let i = 0; i < text.length - 1; i++) {
         const current = text.substring(i, i + 2);
-        if (!current.match(/[\.\[\]\*\n`]/) && current.length === 2)
+        if (!current.match(/[\.\[\]\*\n`]/) && current.length === 2) {
           returnObject[current] = true;
+        }
       }
       return returnObject;
     }

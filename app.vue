@@ -35,7 +35,7 @@ window.addEventListener("hashchange", (e) => {
       .getElementById(decodeURIComponent(location.hash.substring(1)))
       ?.scrollIntoView(true);
   } else {
-    window.scroll({ top: 0, behavior: "smooth" });
+    //window.scroll({ top: 0, behavior: "smooth" });
   }
 });
 </script>
@@ -90,7 +90,7 @@ $card-height: 100%;
 
 @import "vue-select/dist/vue-select.css";
 
-@import "bootstrap-icons/font/bootstrap-icons.scss";
+@import "bootstrap-icons/font/bootstrap-icons";
 
 $custom-colors: (
   "sfsite": #181b2c,
