@@ -1,6 +1,6 @@
 <template lang="pug">
-NuxtLayout
-  NuxtPage.my-4.container(key="content")
+NuxtLayout(:name="$route.path === '/' ? 'full-screen' : 'default'")
+  NuxtPage(key="content")
 </template>
 <script setup lang="ts">
 import "bootstrap";
@@ -123,9 +123,5 @@ a:not(:hover) {
   border-radius: 3px;
   border-top: solid 3px white;
   border-bottom: solid 3px white;
-}
-
-body:not(.modal-open) {
-  overflow-y: scroll;
 }
 </style>

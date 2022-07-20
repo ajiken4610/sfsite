@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   LayoutHeader
-  slot
+  slot.my-4.container
   LayoutFooter
   LayoutLoadingOverlay
   LayoutToastContainer(:toasts="toasts")
@@ -50,5 +50,8 @@ router.afterEach(() => {
 
 .page-move {
   transition: all 1s ease;
+}
+body:not(.modal-open) {
+  overflow-y: scroll;
 }
 </style>
