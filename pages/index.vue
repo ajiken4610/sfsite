@@ -352,7 +352,7 @@ onMounted(async () => {
   uniform sampler2D u_AllOff;
   uniform sampler2D u_OnOff;
   uniform sampler2D u_DispOff;
-  uniform vec3 u_DispColor;
+  uniform sampler2D u_DispCoord;
   uniform vec2 u_Mouse;
   uniform float u_Time;
   float rand(vec2 co){
@@ -371,7 +371,8 @@ onMounted(async () => {
     move*=fac;
     move = clamp(move,-fac,fac);
     vec2 uv = ((v_UV-.5)*(1.-fac)+.5)+move;
-    vec4 color = texture2D(u_AllOff,uv)+texture2D(u_OnOff,uv)*texture2D(u_Scroller,uv)+vec4(u_DispColor,1.0)*texture2D(u_DispOff,uv);
+    vec4 dispCoord = texture2D(u_DispCoord,uv);
+    vec4 color = mix(texture2D(u_AllOff,uv)+texture2D(u_OnOff,uv)*texture2D(u_Scroller,uv)+vec4(1.,1.,0.,1.)*texture2D(u_DispOff,uv),vec4(dispCoord.xy,.0,1.),dispCoord.z);
     float h = dot(color.xyz,vec3(0.299, 0.587, 0.114));
 	  gl_FragColor = color+((noise(uv)-.5)*max(0.,.1-h));
   }`,
@@ -381,7 +382,7 @@ onMounted(async () => {
       u_OnOff: { value: null },
       u_DispOff: { value: null },
       u_Particle: { value: null },
-      u_DispColor: { value: new Color(0x000000) },
+      u_DispCoord: { value: null },
       u_Mouse: { value: new Vector2(0.5, 0.5) },
       u_Time: { value: 0 },
     },
@@ -393,6 +394,8 @@ onMounted(async () => {
   material.uniforms.u_OnOff.value = onOffTexture;
   const dispOffTexture = await new TextureLoader().loadAsync("disp-off.png");
   material.uniforms.u_DispOff.value = dispOffTexture;
+  const dispCoordTexture = await new TextureLoader().loadAsync("dispcoord.png");
+  material.uniforms.u_DispCoord.value = dispCoordTexture;
   //material.uniforms.u_Particle.value = particleRenderTarget.texture;
   const planeMesh = new Mesh(geometory, material);
   scene.add(planeMesh);
@@ -513,11 +516,11 @@ onMounted(async () => {
     }
     material.uniforms.u_Time.value = time;
     // gpgpuMaterial.uniforms.u_Time.value = time;
-    material.uniforms.u_DispColor.value = new Color(
-      Math.floor(Math.random() * 256) * 0x010000 +
-        Math.floor(Math.random() * 256) * 0x000100 +
-        Math.floor(Math.random() * 256) * 0x000001
-    );
+    // material.uniforms.u_DispColor.value = new Color(
+    //   Math.floor(Math.random() * 256) * 0x010000 +
+    //     Math.floor(Math.random() * 256) * 0x000100 +
+    //     Math.floor(Math.random() * 256) * 0x000001
+    // );
     material.uniforms.u_Mouse.value.x = mouseCurrentX =
       mouseX * 0.2 + mouseCurrentX * 0.8;
     material.uniforms.u_Mouse.value.y = mouseCurrentY =
