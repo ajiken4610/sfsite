@@ -134,205 +134,205 @@ onMounted(async () => {
     depthBuffer: false,
   });
 
-  // パーティクルGPGPU
-  const particleCount = 16;
-  let gpgpuRenderTarget1 = new WebGLRenderTarget(10, particleCount, {
-    depthBuffer: false,
-    stencilBuffer: false,
-    minFilter: NearestFilter,
-    magFilter: NearestFilter,
-  });
-  let gpgpuRenderTarget2 = new WebGLRenderTarget(10, particleCount, {
-    depthBuffer: false,
-    stencilBuffer: false,
-    minFilter: NearestFilter,
-    magFilter: NearestFilter,
-  });
+  // // パーティクルGPGPU
+  // const particleCount = 16;
+  // let gpgpuRenderTarget1 = new WebGLRenderTarget(10, particleCount, {
+  //   depthBuffer: false,
+  //   stencilBuffer: false,
+  //   minFilter: NearestFilter,
+  //   magFilter: NearestFilter,
+  // });
+  // let gpgpuRenderTarget2 = new WebGLRenderTarget(10, particleCount, {
+  //   depthBuffer: false,
+  //   stencilBuffer: false,
+  //   minFilter: NearestFilter,
+  //   magFilter: NearestFilter,
+  // });
 
-  const gpgpuGeometory = new PlaneBufferGeometry(2, 2);
-  const gpgpuMaterial = new ShaderMaterial({
-    vertexShader: `
-    varying vec2 v_UV;
-    void main() {
-      v_UV = uv;
-	    gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
-    }`,
-    fragmentShader: `
-    uniform sampler2D u_Old;
-    uniform float u_Time;
-    varying vec2 v_UV;
-    float rand(vec2 co){
-      return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
-    }
-    float restore(vec4 val){
-      const vec4 bitShift = vec4(1.,1./256.,1./(256.*256.),1./(256.*256.*256.));
-      return dot(val,bitShift);
-    }
-    vec4 store(float val){
-      const vec4 bitShift = vec4(1.,1./256.,1./(256.*256.),1./(256.*256.*256.));
-      const vec4 bitMask = vec4(1./256.,1./256.,1./256.,0.);
-      vec4 ret = fract(val*bitShift);
-      ret -= ret.yzww * bitMask;
-      return ret;
-    }
-    void main() {
-      const float paramCount = 10.;
-      const float offset = 1./paramCount;
-      float oldX = restore(texture2D(u_Old,vec2(offset*0.,v_UV.y)));
-      float oldY = restore(texture2D(u_Old,vec2(offset*1.,v_UV.y)));
-      float oldZ = restore(texture2D(u_Old,vec2(offset*2.,v_UV.y)));
-      float oldVX = restore(texture2D(u_Old,vec2(offset*3.,v_UV.y)));
-      float oldVY = restore(texture2D(u_Old,vec2(offset*4.,v_UV.y)));
-      float oldVZ = restore(texture2D(u_Old,vec2(offset*5.,v_UV.y)));
-      float oldR = restore(texture2D(u_Old,vec2(offset*6.,v_UV.y)));
-      float oldG = restore(texture2D(u_Old,vec2(offset*7.,v_UV.y)));
-      float oldB = restore(texture2D(u_Old,vec2(offset*8.,v_UV.y)));
-      float oldLife = restore(texture2D(u_Old,vec2(offset*9.,v_UV.y)));
-      int index = int(v_UV.x*paramCount);
-      gl_FragColor = vec4(float(index)/paramCount,.0,.0,1.);
-      const float speed = .01;
-      switch(index){
-        case 0: // x
-          gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.1)): oldX + (oldVX-.5)*speed);
-          break;
-        case 1: // y
-          gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.2)) : oldY + (oldVY-.5)*speed);
-          break;
-        case 2: // z
-          gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.3)) : oldZ + (oldVZ-.5)*speed);
-          break;
-        case 3: // vx
-          gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.4)) : oldVX );
-          break;
-        case 4: // vy
-          gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.5)) : oldVY );
-          break;
-        case 5: // vz
-          gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.6)) : oldVZ );
-          break;
-        case 6: // r
-          gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.7)) : oldR  );
-          break;
-        case 7: // g
-          gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.8)) : oldG  );
-          break;
-        case 8: // b
-          gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.9)) : oldB  );
-          break;
-        case 9: // life
-          gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time))*.5+.5 : max(0.,oldLife - (1./120.)) );
-          break;
-      }
-    }`,
-    uniforms: {
-      u_Old: { value: null },
-      u_Time: { value: 0 },
-    },
-  });
-  const gpgpuMesh = new Mesh(gpgpuGeometory, gpgpuMaterial);
-  const gpgpuScene = new Scene();
-  gpgpuScene.add(gpgpuMesh);
-  const gpgpuCamera = new OrthographicCamera();
-  gpgpuCamera.position.z = 1;
-  gpgpuCamera.lookAt(0, 0, 0);
-  gpgpuCamera.top = 1;
-  gpgpuCamera.bottom = -1;
-  gpgpuCamera.left = -1;
-  gpgpuCamera.right = 1;
-  gpgpuCamera.near = 0.1;
-  gpgpuCamera.far = 2;
-  gpgpuCamera.updateProjectionMatrix();
+  // const gpgpuGeometory = new PlaneBufferGeometry(2, 2);
+  // const gpgpuMaterial = new ShaderMaterial({
+  //   vertexShader: `
+  //   varying vec2 v_UV;
+  //   void main() {
+  //     v_UV = uv;
+  //     gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+  //   }`,
+  //   fragmentShader: `
+  //   uniform sampler2D u_Old;
+  //   uniform float u_Time;
+  //   varying vec2 v_UV;
+  //   float rand(vec2 co){
+  //     return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+  //   }
+  //   float restore(vec4 val){
+  //     const vec4 bitShift = vec4(1.,1./256.,1./(256.*256.),1./(256.*256.*256.));
+  //     return dot(val,bitShift);
+  //   }
+  //   vec4 store(float val){
+  //     const vec4 bitShift = vec4(1.,1./256.,1./(256.*256.),1./(256.*256.*256.));
+  //     const vec4 bitMask = vec4(1./256.,1./256.,1./256.,0.);
+  //     vec4 ret = fract(val*bitShift);
+  //     ret -= ret.yzww * bitMask;
+  //     return ret;
+  //   }
+  //   void main() {
+  //     const float paramCount = 10.;
+  //     const float offset = 1./paramCount;
+  //     float oldX = restore(texture2D(u_Old,vec2(offset*0.,v_UV.y)));
+  //     float oldY = restore(texture2D(u_Old,vec2(offset*1.,v_UV.y)));
+  //     float oldZ = restore(texture2D(u_Old,vec2(offset*2.,v_UV.y)));
+  //     float oldVX = restore(texture2D(u_Old,vec2(offset*3.,v_UV.y)));
+  //     float oldVY = restore(texture2D(u_Old,vec2(offset*4.,v_UV.y)));
+  //     float oldVZ = restore(texture2D(u_Old,vec2(offset*5.,v_UV.y)));
+  //     float oldR = restore(texture2D(u_Old,vec2(offset*6.,v_UV.y)));
+  //     float oldG = restore(texture2D(u_Old,vec2(offset*7.,v_UV.y)));
+  //     float oldB = restore(texture2D(u_Old,vec2(offset*8.,v_UV.y)));
+  //     float oldLife = restore(texture2D(u_Old,vec2(offset*9.,v_UV.y)));
+  //     int index = int(v_UV.x*paramCount);
+  //     gl_FragColor = vec4(float(index)/paramCount,.0,.0,1.);
+  //     const float speed = .01;
+  //     switch(index){
+  //       case 0: // x
+  //         gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.1)): oldX + (oldVX-.5)*speed);
+  //         break;
+  //       case 1: // y
+  //         gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.2)) : oldY + (oldVY-.5)*speed);
+  //         break;
+  //       case 2: // z
+  //         gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.3)) : oldZ + (oldVZ-.5)*speed);
+  //         break;
+  //       case 3: // vx
+  //         gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.4)) : oldVX );
+  //         break;
+  //       case 4: // vy
+  //         gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.5)) : oldVY );
+  //         break;
+  //       case 5: // vz
+  //         gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.6)) : oldVZ );
+  //         break;
+  //       case 6: // r
+  //         gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.7))*.2 : oldR  );
+  //         break;
+  //       case 7: // g
+  //         gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.8)) : oldG  );
+  //         break;
+  //       case 8: // b
+  //         gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time+.9)) : oldB  );
+  //         break;
+  //       case 9: // life
+  //         gl_FragColor = store(oldLife == 0. ? rand(v_UV+sin(u_Time))*.5+.5 : max(0.,oldLife - (1./120.)) );
+  //         break;
+  //     }
+  //   }`,
+  //   uniforms: {
+  //     u_Old: { value: null },
+  //     u_Time: { value: 0 },
+  //   },
+  // });
+  // const gpgpuMesh = new Mesh(gpgpuGeometory, gpgpuMaterial);
+  // const gpgpuScene = new Scene();
+  // gpgpuScene.add(gpgpuMesh);
+  // const gpgpuCamera = new OrthographicCamera();
+  // gpgpuCamera.position.z = 1;
+  // gpgpuCamera.lookAt(0, 0, 0);
+  // gpgpuCamera.top = 1;
+  // gpgpuCamera.bottom = -1;
+  // gpgpuCamera.left = -1;
+  // gpgpuCamera.right = 1;
+  // gpgpuCamera.near = 0.1;
+  // gpgpuCamera.far = 2;
+  // gpgpuCamera.updateProjectionMatrix();
 
-  // パーティクル
-  const particleGeometory = new BufferGeometry();
-  const indexes = new Float32Array(particleCount);
-  for (var i = 0; i < particleCount; i++) {
-    indexes[i] = (1 / particleCount) * i + (1 / particleCount) * 0.5;
-  }
-  particleGeometory.setAttribute(
-    "a_Index",
-    new Float32BufferAttribute(indexes, 1)
-  );
-  particleGeometory.setAttribute(
-    "position",
-    new Float32BufferAttribute(new Float32Array(192), 3)
-  );
-  particleGeometory.drawRange.start = 0;
-  particleGeometory.drawRange.count = particleCount;
-  const particleMaterial = new ShaderMaterial({
-    vertexShader: `
-  attribute float a_Index;
-  uniform sampler2D u_CoordTexture;
-  varying float v_Index;
-  varying vec3 v_Color;
-  varying float v_Z;
-  float restore(vec4 val){
-      const vec4 bitShift = vec4(1.,1./256.,1./(256.*256.),1./(256.*256.*256.));
-      return dot(val,bitShift);
-  }
-  void main() {
-    const float paramCount = 10.;
-    const float offset = 1./paramCount;
-    float x = restore(texture2D(u_CoordTexture,vec2(offset*0.,a_Index)));
-    float y = restore(texture2D(u_CoordTexture,vec2(offset*1.,a_Index)));
-    float z = restore(texture2D(u_CoordTexture,vec2(offset*2.,a_Index)));
-    float r = restore(texture2D(u_CoordTexture,vec2(offset*6.,a_Index)));
-    float g = restore(texture2D(u_CoordTexture,vec2(offset*7.,a_Index)));
-    float b = restore(texture2D(u_CoordTexture,vec2(offset*8.,a_Index)));
-    gl_PointSize = z*8.;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(x, y,.5, 1.0);
-    v_Index = a_Index;
-    v_Color = vec3(r,g,b);
-    v_Z = z;
-  }`,
-    fragmentShader: `
-  uniform sampler2D u_CoordTexture;
-  uniform sampler2D u_Mist;
-  varying vec3 v_Color;
-  varying float v_Index;
-  varying float v_Z;
-  float restore(vec4 val){
-      const vec4 bitShift = vec4(1.,1./256.,1./(256.*256.),1./(256.*256.*256.));
-      return dot(val,bitShift);
-  }
-  void main() {
-    const float paramCount = 10.;
-    const float offset = 1./paramCount;
-    if(distance(gl_PointCoord,vec2(.5)) > .5 || texture2D(u_Mist,vec2(gl_FragCoord.x/1920.,gl_FragCoord.y/1080.)).x < 1.-v_Z ){
-      discard;
-    }else{
-      gl_FragColor = vec4( v_Color, 1.0 );
-    }
-  }`,
-    uniforms: {
-      u_CoordTexture: { value: null },
-      u_Mist: { value: null },
-    },
-  });
-  const mistTexture = await new TextureLoader().loadAsync("mist.png");
-  particleMaterial.uniforms.u_Mist.value = mistTexture;
-  const particlePoints = new Points(particleGeometory, particleMaterial);
+  // // パーティクル
+  // const particleGeometory = new BufferGeometry();
+  // const indexes = new Float32Array(particleCount);
+  // for (var i = 0; i < particleCount; i++) {
+  //   indexes[i] = (1 / particleCount) * i + (1 / particleCount) * 0.5;
+  // }
+  // particleGeometory.setAttribute(
+  //   "a_Index",
+  //   new Float32BufferAttribute(indexes, 1)
+  // );
+  // particleGeometory.setAttribute(
+  //   "position",
+  //   new Float32BufferAttribute(new Float32Array(192), 3)
+  // );
+  // particleGeometory.drawRange.start = 0;
+  // particleGeometory.drawRange.count = particleCount;
+  // const particleMaterial = new ShaderMaterial({
+  //   vertexShader: `
+  // attribute float a_Index;
+  // uniform sampler2D u_CoordTexture;
+  // varying float v_Index;
+  // varying vec3 v_Color;
+  // varying float v_Z;
+  // float restore(vec4 val){
+  //     const vec4 bitShift = vec4(1.,1./256.,1./(256.*256.),1./(256.*256.*256.));
+  //     return dot(val,bitShift);
+  // }
+  // void main() {
+  //   const float paramCount = 10.;
+  //   const float offset = 1./paramCount;
+  //   float x = restore(texture2D(u_CoordTexture,vec2(offset*0.,a_Index)));
+  //   float y = restore(texture2D(u_CoordTexture,vec2(offset*1.,a_Index)));
+  //   float z = restore(texture2D(u_CoordTexture,vec2(offset*2.,a_Index)));
+  //   float r = restore(texture2D(u_CoordTexture,vec2(offset*6.,a_Index)));
+  //   float g = restore(texture2D(u_CoordTexture,vec2(offset*7.,a_Index)));
+  //   float b = restore(texture2D(u_CoordTexture,vec2(offset*8.,a_Index)));
+  //   gl_PointSize = z*8.;
+  //   gl_Position = projectionMatrix * modelViewMatrix * vec4(x, y,.5, 1.0);
+  //   v_Index = a_Index;
+  //   v_Color = vec3(r,g,b);
+  //   v_Z = z;
+  // }`,
+  //   fragmentShader: `
+  // uniform sampler2D u_CoordTexture;
+  // uniform sampler2D u_Mist;
+  // varying vec3 v_Color;
+  // varying float v_Index;
+  // varying float v_Z;
+  // float restore(vec4 val){
+  //     const vec4 bitShift = vec4(1.,1./256.,1./(256.*256.),1./(256.*256.*256.));
+  //     return dot(val,bitShift);
+  // }
+  // void main() {
+  //   const float paramCount = 10.;
+  //   const float offset = 1./paramCount;
+  //   if(distance(gl_PointCoord,vec2(.5)) > .5 || texture2D(u_Mist,vec2(gl_FragCoord.x/1920.,gl_FragCoord.y/1080.)).x < 1.-v_Z ){
+  //     discard;
+  //   }else{
+  //     gl_FragColor = vec4( v_Color, 1.0 );
+  //   }
+  // }`,
+  //   uniforms: {
+  //     u_CoordTexture: { value: null },
+  //     u_Mist: { value: null },
+  //   },
+  // });
+  // const mistTexture = await new TextureLoader().loadAsync("mist.png");
+  // particleMaterial.uniforms.u_Mist.value = mistTexture;
+  // const particlePoints = new Points(particleGeometory, particleMaterial);
 
-  const particleScene = new Scene();
-  particleScene.add(particlePoints);
+  // const particleScene = new Scene();
+  // particleScene.add(particlePoints);
 
-  const particleCamera = new OrthographicCamera();
-  particleCamera.position.z = 1;
-  particleCamera.lookAt(0, 0, 0);
-  particleCamera.top = 1;
-  particleCamera.bottom = 0;
-  particleCamera.left = 0;
-  particleCamera.right = 1;
-  particleCamera.near = 0.1;
-  particleCamera.far = 2;
-  particleCamera.updateProjectionMatrix();
+  // const particleCamera = new OrthographicCamera();
+  // particleCamera.position.z = 1;
+  // particleCamera.lookAt(0, 0, 0);
+  // particleCamera.top = 1;
+  // particleCamera.bottom = 0;
+  // particleCamera.left = 0;
+  // particleCamera.right = 1;
+  // particleCamera.near = 0.1;
+  // particleCamera.far = 2;
+  // particleCamera.updateProjectionMatrix();
 
-  const particleRenderTarget = new WebGLRenderTarget(1920, 1080, {
-    depthBuffer: false,
-    stencilBuffer: false,
-    minFilter: LinearFilter,
-    magFilter: LinearFilter,
-  });
+  // const particleRenderTarget = new WebGLRenderTarget(1920, 1080, {
+  //   depthBuffer: false,
+  //   stencilBuffer: false,
+  //   minFilter: LinearFilter,
+  //   magFilter: LinearFilter,
+  // });
 
   // シーンの初期化
   const scene = new Scene();
@@ -352,7 +352,6 @@ onMounted(async () => {
   uniform sampler2D u_AllOff;
   uniform sampler2D u_OnOff;
   uniform sampler2D u_DispOff;
-  uniform sampler2D u_Particle;
   uniform vec3 u_DispColor;
   uniform vec2 u_Mouse;
   uniform float u_Time;
@@ -372,7 +371,7 @@ onMounted(async () => {
     move*=fac;
     move = clamp(move,-fac,fac);
     vec2 uv = ((v_UV-.5)*(1.-fac)+.5)+move;
-    vec4 color = texture2D(u_Particle,uv)*1.+texture2D(u_AllOff,uv)+texture2D(u_OnOff,uv)*texture2D(u_Scroller,uv)+vec4(u_DispColor,1.0)*texture2D(u_DispOff,uv);
+    vec4 color = texture2D(u_AllOff,uv)+texture2D(u_OnOff,uv)*texture2D(u_Scroller,uv)+vec4(u_DispColor,1.0)*texture2D(u_DispOff,uv);
     float h = dot(color.xyz,vec3(0.299, 0.587, 0.114));
 	  gl_FragColor = color+((noise(uv)-.5)*max(0.,.1-h));
   }`,
@@ -394,7 +393,7 @@ onMounted(async () => {
   material.uniforms.u_OnOff.value = onOffTexture;
   const dispOffTexture = await new TextureLoader().loadAsync("disp-off.png");
   material.uniforms.u_DispOff.value = dispOffTexture;
-  material.uniforms.u_Particle.value = particleRenderTarget.texture;
+  //material.uniforms.u_Particle.value = particleRenderTarget.texture;
   const planeMesh = new Mesh(geometory, material);
   scene.add(planeMesh);
 
@@ -482,18 +481,18 @@ onMounted(async () => {
     renderer.setRenderTarget(scrollerRenderTarget);
     renderer.render(scrollerScene, scrollerCamera);
 
-    // GPGPUのレンダリング
-    gpgpuMaterial.uniforms.u_Old.value = gpgpuRenderTarget2.texture;
-    renderer.setRenderTarget(gpgpuRenderTarget1);
-    renderer.render(gpgpuScene, gpgpuCamera);
-    const flip = gpgpuRenderTarget1;
-    gpgpuRenderTarget1 = gpgpuRenderTarget2;
-    gpgpuRenderTarget2 = flip;
+    // // GPGPUのレンダリング
+    // gpgpuMaterial.uniforms.u_Old.value = gpgpuRenderTarget2.texture;
+    // renderer.setRenderTarget(gpgpuRenderTarget1);
+    // renderer.render(gpgpuScene, gpgpuCamera);
+    // const flip = gpgpuRenderTarget1;
+    // gpgpuRenderTarget1 = gpgpuRenderTarget2;
+    // gpgpuRenderTarget2 = flip;
 
-    // パーティクルのレンダリング
-    particleMaterial.uniforms.u_CoordTexture.value = gpgpuRenderTarget1.texture;
-    renderer.setRenderTarget(particleRenderTarget);
-    renderer.render(particleScene, particleCamera);
+    // // パーティクルのレンダリング
+    // particleMaterial.uniforms.u_CoordTexture.value = gpgpuRenderTarget1.texture;
+    // renderer.setRenderTarget(particleRenderTarget);
+    // renderer.render(particleScene, particleCamera);
 
     // シーンのレンダリング
     renderer.setRenderTarget(null);
@@ -513,7 +512,7 @@ onMounted(async () => {
       material.uniforms.u_Time.value = time;
     }
     material.uniforms.u_Time.value = time;
-    gpgpuMaterial.uniforms.u_Time.value = time;
+    // gpgpuMaterial.uniforms.u_Time.value = time;
     material.uniforms.u_DispColor.value = new Color(
       Math.floor(Math.random() * 256) * 0x010000 +
         Math.floor(Math.random() * 256) * 0x000100 +
