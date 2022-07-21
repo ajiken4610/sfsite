@@ -589,8 +589,8 @@ onMounted(async () => {
     }
     material.uniforms.u_Time.value = time;
     dispMaterial.uniforms.u_Time.value = time;
-    const toFes = Math.floor((1663804800000 - Date.now()) / 1000);
-    const mill = (1663804800000 - Date.now()) % 1000; //
+    const toFes = Math.floor((1663369200000 - Date.now()) / 1000);
+    const mill = (1663369200000 - Date.now()) % 1000; //
     const sec = toFes % 60;
     const min = Math.floor((toFes % 3600) / 60);
     const hour = Math.floor(toFes / 3600);
