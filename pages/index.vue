@@ -334,12 +334,10 @@ onMounted(async () => {
   //   magFilter: LinearFilter,
   // });
 
-  // シーンの初期化
-  const scene = new Scene();
-
-  // 板ポリ
-  const geometory = new PlaneBufferGeometry(3.5555555, 2);
-  const material = new ShaderMaterial({
+  // 画面の中描画
+  const dispScene = new Scene();
+  const dispGeometory = new PlaneBufferGeometry(2, 2);
+  const dispMaterial = new ShaderMaterial({
     vertexShader: `
   varying vec2 v_UV;
   void main() {
@@ -348,11 +346,79 @@ onMounted(async () => {
   }`,
     fragmentShader: `
   varying vec2 v_UV;
+  uniform float u_Time;
+  uniform lowp float[10] texts;
+  uniform sampler2D numberTexture;
+  vec3 toRGB(float h,float s,float v){
+    return ((clamp(abs(fract(h+vec3(0,2,1)/3.)*6.-3.)-1.,0.,1.)-1.)*s+1.)*v;
+  }
+  void main() {
+    const float textLength = 10.;
+    const float textTypeCount = 11.;
+    float uf = fract(v_UV.x*textLength);
+    int ui = int(v_UV.x*textLength);
+    float currentText = texts[ui];
+    vec3 color = texture2D(numberTexture,(vec2(1./textTypeCount*uf+currentText/textTypeCount,v_UV.y*2.-.5))).rgb;
+    gl_FragColor = vec4(color*toRGB(currentText/textTypeCount+u_Time/30.,1.,1.),1.);
+  }
+  `,
+    uniforms: {
+      // 0-9,10:":",11:" "
+      texts: { value: [0, 0, 0, 0, 10, 0, 0, 10, 0, 0] },
+      numberTexture: { value: null },
+      u_Time: { value: 0 },
+    },
+  });
+  const numberTexture = await new TextureLoader().loadAsync("numbers.png");
+  dispMaterial.uniforms.numberTexture.value = numberTexture;
+
+  const dispMesh = new Mesh(dispGeometory, dispMaterial);
+  dispScene.add(dispMesh);
+  const dispCamera = new OrthographicCamera();
+  dispCamera.position.z = 1;
+  dispCamera.lookAt(0, 0, 0);
+  dispCamera.top = 1;
+  dispCamera.bottom = -1;
+  dispCamera.left = -1;
+  dispCamera.right = 1;
+  dispCamera.near = 0.1;
+  dispCamera.far = 2;
+  dispCamera.updateProjectionMatrix();
+  const dispRenderTarget = new WebGLRenderTarget(512, 512);
+
+  // シーンの初期化
+  const scene = new Scene();
+
+  // 板ポリ
+  const geometory = new PlaneBufferGeometry(3.5555555, 2);
+  const material = new ShaderMaterial({
+    vertexShader: `
+  varying vec2 v_UV;
+  varying vec4 v_DispColor;
+  uniform sampler2D u_DispTexture;
+  void main() {
+    v_UV = uv;
+    v_DispColor =
+    (texture2D(u_DispTexture,vec2(.25,.25))+
+    texture2D(u_DispTexture,vec2(.25,.50))+
+    texture2D(u_DispTexture,vec2(.25,.75))+
+    texture2D(u_DispTexture,vec2(.50,.25))+
+    texture2D(u_DispTexture,vec2(.50,.50))+
+    texture2D(u_DispTexture,vec2(.50,.75))+
+    texture2D(u_DispTexture,vec2(.75,.25))+
+    texture2D(u_DispTexture,vec2(.75,.50))+
+    texture2D(u_DispTexture,vec2(.75,.75))) / 9.;
+	  gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
+  }`,
+    fragmentShader: `
+  varying vec2 v_UV;
+  varying vec4 v_DispColor;
   uniform sampler2D u_Scroller;
   uniform sampler2D u_AllOff;
   uniform sampler2D u_OnOff;
   uniform sampler2D u_DispOff;
   uniform sampler2D u_DispCoord;
+  uniform sampler2D u_DispTexture;
   uniform vec2 u_Mouse;
   uniform float u_Time;
   float rand(vec2 co){
@@ -372,7 +438,8 @@ onMounted(async () => {
     move = clamp(move,-fac,fac);
     vec2 uv = ((v_UV-.5)*(1.-fac)+.5)+move;
     vec4 dispCoord = texture2D(u_DispCoord,uv);
-    vec4 color = mix(texture2D(u_AllOff,uv)+texture2D(u_OnOff,uv)*texture2D(u_Scroller,uv)+vec4(1.,1.,0.,1.)*texture2D(u_DispOff,uv),vec4(dispCoord.xy,.0,1.),dispCoord.z);
+    vec4 disp = texture2D(u_DispTexture,dispCoord.xy);
+    vec4 color = mix(texture2D(u_AllOff,uv)+texture2D(u_OnOff,uv)*texture2D(u_Scroller,uv)+v_DispColor*texture2D(u_DispOff,uv),disp,dispCoord.z);
     float h = dot(color.xyz,vec3(0.299, 0.587, 0.114));
 	  gl_FragColor = color+((noise(uv)-.5)*max(0.,.1-h));
   }`,
@@ -383,6 +450,7 @@ onMounted(async () => {
       u_DispOff: { value: null },
       u_Particle: { value: null },
       u_DispCoord: { value: null },
+      u_DispTexture: { value: null },
       u_Mouse: { value: new Vector2(0.5, 0.5) },
       u_Time: { value: 0 },
     },
@@ -396,6 +464,7 @@ onMounted(async () => {
   material.uniforms.u_DispOff.value = dispOffTexture;
   const dispCoordTexture = await new TextureLoader().loadAsync("dispcoord.png");
   material.uniforms.u_DispCoord.value = dispCoordTexture;
+  material.uniforms.u_DispTexture.value = dispRenderTarget.texture;
   //material.uniforms.u_Particle.value = particleRenderTarget.texture;
   const planeMesh = new Mesh(geometory, material);
   scene.add(planeMesh);
@@ -497,6 +566,10 @@ onMounted(async () => {
     // renderer.setRenderTarget(particleRenderTarget);
     // renderer.render(particleScene, particleCamera);
 
+    // ディスプのレンダリング
+    renderer.setRenderTarget(dispRenderTarget);
+    renderer.render(dispScene, dispCamera);
+
     // シーンのレンダリング
     renderer.setRenderTarget(null);
     composer.render();
@@ -515,6 +588,35 @@ onMounted(async () => {
       material.uniforms.u_Time.value = time;
     }
     material.uniforms.u_Time.value = time;
+    dispMaterial.uniforms.u_Time.value = time;
+    const toFes = Math.floor((1663804800000 - Date.now()) / 1000);
+    const mill = (1663804800000 - Date.now()) % 1000; //
+    const sec = toFes % 60;
+    const min = Math.floor((toFes % 3600) / 60);
+    const hour = Math.floor(toFes / 3600);
+    if (toFes > 3600) {
+      dispMaterial.uniforms.texts.value[9] = sec % 10;
+      dispMaterial.uniforms.texts.value[8] = Math.floor(sec / 10);
+      dispMaterial.uniforms.texts.value[7] = 10;
+      dispMaterial.uniforms.texts.value[6] = min % 10;
+      dispMaterial.uniforms.texts.value[5] = Math.floor(min / 10);
+      dispMaterial.uniforms.texts.value[4] = 10;
+      dispMaterial.uniforms.texts.value[3] = hour % 10;
+      dispMaterial.uniforms.texts.value[2] = Math.floor((hour / 10) % 10);
+      dispMaterial.uniforms.texts.value[1] = Math.floor((hour / 100) % 10);
+      dispMaterial.uniforms.texts.value[0] = Math.floor((hour / 1000) % 10);
+    } else {
+      dispMaterial.uniforms.texts.value[9] = Math.floor(mill % 10);
+      dispMaterial.uniforms.texts.value[8] = Math.floor((mill / 10) % 10);
+      dispMaterial.uniforms.texts.value[7] = Math.floor((mill / 100) % 10);
+      dispMaterial.uniforms.texts.value[6] = 10;
+      dispMaterial.uniforms.texts.value[5] = sec % 10;
+      dispMaterial.uniforms.texts.value[4] = Math.floor(sec / 10);
+      dispMaterial.uniforms.texts.value[3] = 10;
+      dispMaterial.uniforms.texts.value[2] = min % 10;
+      dispMaterial.uniforms.texts.value[1] = Math.floor(min / 10);
+      dispMaterial.uniforms.texts.value[0] = 11;
+    }
     // gpgpuMaterial.uniforms.u_Time.value = time;
     // material.uniforms.u_DispColor.value = new Color(
     //   Math.floor(Math.random() * 256) * 0x010000 +

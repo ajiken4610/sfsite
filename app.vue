@@ -19,7 +19,7 @@ router.beforeEach((to, from, next) => {
 });
 useHead({
   titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} | SF Edit` : "Salesio Festa Editor";
+    return titleChunk ? `${titleChunk} | SaleFes` : "Salesio Festa";
   },
 });
 router.onError((error) => {
@@ -41,68 +41,6 @@ window.addEventListener("hashchange", (e) => {
 </script>
 
 <style lang="scss">
-@import "highlight.js/scss/github-dark.scss";
-
-@import "bootstrap/scss/functions";
-// Default variable overrides
-$light: #dddddd;
-$dark: #181b2c;
-
-$body-bg: #181b2c;
-$body-color: #fff;
-
-$component-active-color: $body-color;
-$component-active-bg: $body-bg;
-
-$popover-bg: $body-bg;
-$popover-border-color: $body-color;
-
-$modal-content-bg: $body-bg;
-$modal-content-color: $body-color;
-
-$toast-header-color: $body-color;
-$toast-background-color: rgba(black, 0.5);
-$toast-header-background-color: rgba(black, 0.1);
-
-$dropdown-link-color: $body-bg;
-
-$btn-close-color: $body-color;
-
-$card-height: 100%;
-
-:root {
-  --vs-controls-color: #ffffff;
-  --vs-border-color: #ffffff;
-
-  --vs-dropdown-bg: #181b2c;
-  --vs-dropdown-color: #ffffff;
-  --vs-dropdown-option-color: #ffffff;
-
-  --vs-selected-bg: #181b2c;
-  --vs-selected-color: #ffffff;
-
-  --vs-search-input-color: #ffffff;
-
-  --vs-dropdown-option--active-bg: #2d3353;
-  --vs-dropdown-option--active-color: #ffffff;
-}
-@import "bootstrap/scss/bootstrap";
-
-@import "vue-select/dist/vue-select.css";
-
-@import "bootstrap-icons/font/bootstrap-icons";
-
-$custom-colors: (
-  "sfsite": #181b2c,
-);
-
-$theme-colors: map-merge($theme-colors, $custom-colors);
-
-a,
-a:hover {
-  color: $body-color;
-}
-
 a:not(:hover) {
   text-decoration: none;
 }
