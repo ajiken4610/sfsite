@@ -1,7 +1,7 @@
 <template lang="pug">
 nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.shadow-lg
   .container-fluid
-    NuxtLink.navbar-brand(to="/") Salesio Festa
+    NuxtLink.navbar-brand(to="/home") Salesio Festa
     button.navbar-toggler(
       type="button",
       data-bs-toggle="collapse",
@@ -46,29 +46,31 @@ let searchBoxRectOffsetOld: {
   right: number;
 };
 watch(searchBoxFocused, () => {
-  if (searchBoxFocused.value) {
-    // focused
-    searchBoxFocusedDelayed.value = true;
-    const rect = searchGroup.value.getBoundingClientRect();
-    searchBoxRectOffsetOld = searchBoxRectOffset.value = {
-      top: rect.top,
-      bottom: rect.bottom,
-      left: rect.left,
-      right: rect.right,
-    };
-    setTimeout(() => {
-      searchBoxRectOffset.value = {
-        top: 20,
-        bottom: 0,
-        left: 20,
-        right: window.innerWidth - 20,
+  if (window.innerWidth > 991) {
+    if (searchBoxFocused.value) {
+      // focused
+      searchBoxFocusedDelayed.value = true;
+      const rect = searchGroup.value.getBoundingClientRect();
+      searchBoxRectOffsetOld = searchBoxRectOffset.value = {
+        top: rect.top,
+        bottom: rect.bottom,
+        left: rect.left,
+        right: rect.right,
       };
-    }, 100);
-  } else {
-    searchBoxRectOffset.value = searchBoxRectOffsetOld;
-    setTimeout(() => {
-      searchBoxFocusedDelayed.value = searchBoxFocused.value;
-    }, 500);
+      setTimeout(() => {
+        searchBoxRectOffset.value = {
+          top: 20,
+          bottom: 0,
+          left: 20,
+          right: window.innerWidth - 20,
+        };
+      }, 100);
+    } else {
+      searchBoxRectOffset.value = searchBoxRectOffsetOld;
+      setTimeout(() => {
+        searchBoxFocusedDelayed.value = searchBoxFocused.value;
+      }, 500);
+    }
   }
 });
 </script>
