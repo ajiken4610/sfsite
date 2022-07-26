@@ -1,30 +1,48 @@
 <template lang="pug">
-#container(ref="container")
+.wrapper
+  .loading-wrapper(v-if="loading")
+    .loading LOADING...
+  #container(ref="container")
 </template>
+
+<style scoped lang="scss">
+.wrapper {
+  position: relative;
+}
+
+.loading-wrapper {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  display: table;
+  margin: auto;
+}
+.loading {
+  font-size: 5rem;
+  text-align: center;
+  display: table-cell;
+  vertical-align: middle;
+}
+#container {
+  position: absolute;
+}
+</style>
+
 <script lang="ts">
 let showed = false;
 </script>
 <script setup lang="ts">
 import {
-  BufferAttribute,
-  BufferGeometry,
-  Camera,
-  Color,
+  AnimationMixer,
+  Clock,
   EventDispatcher,
-  Float32BufferAttribute,
-  Line,
   LinearFilter,
   Mesh,
-  NearestFilter,
   OrthographicCamera,
   PlaneBufferGeometry,
-  Points,
-  PointsMaterial,
-  RawShaderMaterial,
   RepeatWrapping,
   Scene,
   ShaderMaterial,
-  Texture,
   TextureLoader,
   Vector2,
   WebGLRenderer,
@@ -41,6 +59,7 @@ import { VerticalBlurShader } from "three/examples/jsm/shaders/VerticalBlurShade
 import { FXAAShader } from "three/examples/jsm/shaders/FXAAShader";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
+const loading = ref(true);
 if (showed) {
   location.reload();
 } else {
@@ -336,6 +355,17 @@ onMounted(async () => {
 
   // 画面の中描画
   const dispScene = new Scene();
+  const dispModel = await loader.loadAsync("/welcome-animation.glb", (e) => {
+    console.log((e.loaded / e.total) * 100);
+  });
+  const mixer = new AnimationMixer(dispModel.scene);
+  for (const animation of dispModel.animations) {
+    const action = mixer.clipAction(animation);
+    action.play();
+  }
+  const clock = new Clock();
+  const welcomeScene = new Scene();
+  welcomeScene.add(dispModel.scene);
   const dispGeometory = new PlaneBufferGeometry(2, 2);
   const dispMaterial = new ShaderMaterial({
     vertexShader: `
@@ -348,6 +378,7 @@ onMounted(async () => {
   varying vec2 v_UV;
   uniform float u_Time;
   uniform lowp float[10] texts;
+
   uniform sampler2D numberTexture;
   vec3 toRGB(float h,float s,float v){
     return ((clamp(abs(fract(h+vec3(0,2,1)/3.)*6.-3.)-1.,0.,1.)-1.)*s+1.)*v;
@@ -396,18 +427,31 @@ onMounted(async () => {
   varying vec2 v_UV;
   varying vec4 v_DispColor;
   uniform sampler2D u_DispTexture;
+  uniform float u_Time;
+  vec3 toRGB(float h,float s,float v){
+    return ((clamp(abs(fract(h+vec3(0,2,1)/3.)*6.-3.)-1.,0.,1.)-1.)*s+1.)*v;
+  }
   void main() {
     v_UV = uv;
-    v_DispColor =
-    (texture2D(u_DispTexture,vec2(.25,.25))+
-    texture2D(u_DispTexture,vec2(.25,.50))+
-    texture2D(u_DispTexture,vec2(.25,.75))+
-    texture2D(u_DispTexture,vec2(.50,.25))+
-    texture2D(u_DispTexture,vec2(.50,.50))+
-    texture2D(u_DispTexture,vec2(.50,.75))+
-    texture2D(u_DispTexture,vec2(.75,.25))+
-    texture2D(u_DispTexture,vec2(.75,.50))+
-    texture2D(u_DispTexture,vec2(.75,.75))) / 9.;
+    vec4 s1 = texture2D(u_DispTexture,vec2(.25,.25));
+    vec4 s2 = texture2D(u_DispTexture,vec2(.25,.50));
+    vec4 s3 = texture2D(u_DispTexture,vec2(.25,.75));
+    vec4 s4 = texture2D(u_DispTexture,vec2(.50,.25));
+    vec4 s5 = texture2D(u_DispTexture,vec2(.50,.50));
+    vec4 s6 = texture2D(u_DispTexture,vec2(.50,.75));
+    vec4 s7 = texture2D(u_DispTexture,vec2(.75,.25));
+    vec4 s8 = texture2D(u_DispTexture,vec2(.75,.50));
+    vec4 s9 = texture2D(u_DispTexture,vec2(.75,.75));
+    s1 = vec4(toRGB(s1.g*.3333+s1.b*.6666+u_Time*.05,1.,(s1.r+s1.g+s1.b)),s1.a);
+    s2 = vec4(toRGB(s2.g*.3333+s2.b*.6666+u_Time*.05,1.,(s2.r+s2.g+s2.b)),s2.a);
+    s3 = vec4(toRGB(s3.g*.3333+s3.b*.6666+u_Time*.05,1.,(s3.r+s3.g+s3.b)),s3.a);
+    s4 = vec4(toRGB(s4.g*.3333+s4.b*.6666+u_Time*.05,1.,(s4.r+s4.g+s4.b)),s4.a);
+    s5 = vec4(toRGB(s5.g*.3333+s5.b*.6666+u_Time*.05,1.,(s5.r+s5.g+s5.b)),s5.a);
+    s6 = vec4(toRGB(s6.g*.3333+s6.b*.6666+u_Time*.05,1.,(s6.r+s6.g+s6.b)),s6.a);
+    s7 = vec4(toRGB(s7.g*.3333+s7.b*.6666+u_Time*.05,1.,(s7.r+s7.g+s7.b)),s7.a);
+    s8 = vec4(toRGB(s8.g*.3333+s8.b*.6666+u_Time*.05,1.,(s8.r+s8.g+s8.b)),s8.a);
+    s9 = vec4(toRGB(s9.g*.3333+s9.b*.6666+u_Time*.05,1.,(s9.r+s9.g+s9.b)),s9.a);
+    v_DispColor = (s1+s2+s3+s4+s5+s6+s7+s8+s9)/ 9.;
 	  gl_Position = projectionMatrix * modelViewMatrix * vec4( position, 1.0 );
   }`,
     fragmentShader: `
@@ -427,6 +471,9 @@ onMounted(async () => {
   vec4 noise(vec2 uv){
     return vec4(rand(uv+sin(u_Time)),rand(uv+sin(u_Time*.8)),rand(uv+sin(u_Time*.7)),1.);
   }
+  vec3 toRGB(float h,float s,float v){
+    return ((clamp(abs(fract(h+vec3(0,2,1)/3.)*6.-3.)-1.,0.,1.)-1.)*s+1.)*v;
+  }
   void main() {
     vec2 move = vec2(
       (u_Mouse.x-.5)*.5
@@ -439,6 +486,7 @@ onMounted(async () => {
     vec2 uv = ((v_UV-.5)*(1.-fac)+.5)+move;
     vec4 dispCoord = texture2D(u_DispCoord,uv);
     vec4 disp = texture2D(u_DispTexture,dispCoord.xy);
+    disp = vec4(toRGB(disp.g*.3333+disp.b*.6666+u_Time*.05,1.,(disp.r+disp.g+disp.b)),disp.a);
     vec4 color = mix(texture2D(u_AllOff,uv)+texture2D(u_OnOff,uv)*texture2D(u_Scroller,uv)+v_DispColor*texture2D(u_DispOff,uv),disp,dispCoord.z);
     float h = dot(color.xyz,vec3(0.299, 0.587, 0.114));
 	  gl_FragColor = color+((noise(uv)-.5)*max(0.,.1-h));
@@ -501,7 +549,7 @@ onMounted(async () => {
     "tDiffuse1" // TextureID？ => 前のパス(RenderPass)から受け取ったテクスチャを入れるスロット名,デフォルトは"tDiffuse"だが、このシェーダにはないので、上書き
   );
   blendPass.uniforms.tDiffuse2.value = savePass.renderTarget.texture;
-  blendPass.uniforms.mixRatio.value = 0.75;
+  blendPass.uniforms.mixRatio.value = 0.85;
 
   let blurSize = 5;
 
@@ -549,6 +597,7 @@ onMounted(async () => {
   container.value.appendChild(renderer.domElement);
 
   function render() {
+    const toFes = Math.floor((1663369200000 - Date.now()) / 1000);
     // スクローラのレンダリング
     renderer.setRenderTarget(scrollerRenderTarget);
     renderer.render(scrollerScene, scrollerCamera);
@@ -568,8 +617,12 @@ onMounted(async () => {
 
     // ディスプのレンダリング
     renderer.setRenderTarget(dispRenderTarget);
-    renderer.render(dispScene, dispCamera);
-
+    if (toFes > 0) {
+      renderer.render(dispScene, dispCamera);
+    } else {
+      renderer.render(welcomeScene, dispModel.cameras[0]);
+      mixer.update(clock.getDelta());
+    }
     // シーンのレンダリング
     renderer.setRenderTarget(null);
     composer.render();
@@ -577,11 +630,7 @@ onMounted(async () => {
 
     horizontalBlurPass.uniforms.h.value = (1 / window.innerWidth) * blurSize;
     verticalBlurPass.uniforms.v.value = (1 / window.innerHeight) * blurSize;
-    blurSize = Math.max(0, blurSize - 0.03);
-    if (blurSize < 0) {
-      composer.removePass(horizontalBlurPass);
-      composer.removePass(verticalBlurPass);
-    }
+    blurSize = Math.max(0.1, blurSize - 0.03);
 
     const time = (Date.now() - startTime) / 1000;
     for (const material of materials) {
@@ -589,7 +638,6 @@ onMounted(async () => {
     }
     material.uniforms.u_Time.value = time;
     dispMaterial.uniforms.u_Time.value = time;
-    const toFes = Math.floor((1663369200000 - Date.now()) / 1000);
     const mill = (1663369200000 - Date.now()) % 1000; //
     const sec = toFes % 60;
     const min = Math.floor((toFes % 3600) / 60);
@@ -636,6 +684,7 @@ onMounted(async () => {
       heldValue.dispatchEvent({ type: "dispose" });
     }
   });
+  loading.value = false;
 });
 onUnmounted(() => {
   running.value = false;
