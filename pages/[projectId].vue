@@ -1,5 +1,8 @@
 <template lang="pug">
-div Project
+div
+  LayoutProjectView(v-if="project", :project="project.project")
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const project = useProjectData(useRoute().params.projectId.toString()).data;
+</script>

@@ -1,8 +1,3 @@
-<template lang="pug">
-div
-  LayoutProjectView(v-if="project", :project="project.project")
-</template>
+<template lang="pug"></template>
 
-<script setup lang="ts">
-const project = useProjectData("SJFHOh").data;
-</script>
+<script setup lang="ts"></script>
