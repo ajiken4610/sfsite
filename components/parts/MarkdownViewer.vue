@@ -1,6 +1,6 @@
 <template lang="pug">
 .markdown-viewer-wrapper
-  .table-of-contents
+  .table-of-contents(v-if="tableOfContents.length")
     button.dropdown.dropdown-toggle.button.float-end.btn.btn-outline-light(
       data-bs-toggle="dropdown"
     ) 目次
@@ -255,5 +255,22 @@ onMounted(() => {
 }
 .markdown-viewer:deep(div.youtube-thumbnail-wrapper):hover::after {
   background-color: #d80000;
+}
+.markdown-viewer:deep(blockquote) {
+  border-left: 0.25rem solid #888;
+  padding-left: 1rem;
+  color: #ddd;
+  border-radius: 5px;
+  background-color: rgba(17, 17, 17, 0.5);
+}
+.markdown-viewer:deep(:not(pre) > code) {
+  color: #58ffb4;
+  background-color: #2e2e2e;
+  border-radius: 5px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+  font-weight: bolder;
 }
 </style>

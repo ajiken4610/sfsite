@@ -643,7 +643,7 @@ onMounted(() => {
 
       if (clicked.value && blurSize > 5) {
         running.value = false;
-        useRouter().push({ path: "/home" });
+        location.href = "/home";
       }
 
       const time = (Date.now() - startTime) / 1000;

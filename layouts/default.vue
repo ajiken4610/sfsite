@@ -1,7 +1,8 @@
 <template lang="pug">
 div
   LayoutHeader
-  slot.my-4.container
+  .container
+    slot
   LayoutFooter
   LayoutLoadingOverlay
   LayoutToastContainer(:toasts="toasts")
