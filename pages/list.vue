@@ -1,3 +1,3 @@
 <template lang="pug">
-// ホームView
+// 企画ListView?q=
 </template>

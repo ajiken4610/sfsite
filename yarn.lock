@@ -3031,6 +3031,13 @@ jszip@^3.6.0:
     readable-stream "~2.3.6"
     setimmediate "^1.0.5"
 
+katex@^0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/katex/-/katex-0.16.0.tgz#4faff4c905aad0c6010e85901c4d9140efb80a5e"
+  integrity sha512-wPRB4iUPysfH97wTgG5/tRLYxmKVq6Q4jRAWRVOUxXB1dsiv4cvcNjqabHkrOvJHM1Bpk3WrgmllSO1vIvP24w==
+  dependencies:
+    commander "^8.0.0"
+
 klona@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.5.tgz#d166574d90076395d9963aa7a928fabb8d76afbc"
