@@ -87,8 +87,8 @@ $card-height: 100%;
 
 @import "vue-select/dist/vue-select.css";
 
-@import "bootstrap-icons/font/bootstrap-icons.css";
-@import "katex/dist/katex.min.css";
+@import "public/bootstrap-icons.css";
+@import "public/katex.min.css";
 
 $custom-colors: (
   "sfsite": #181b2c,
