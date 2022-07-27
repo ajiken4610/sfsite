@@ -23,7 +23,7 @@ export const getOwnerName = (
       ret.unshift(owners[current].name);
       current = owners[current].parent;
     }
-    return ret.slice(offset).join(" ");
+    return ret.slice(Math.min(offset, Math.max(0, ret.length - 1))).join(" ");
   } catch (e) {
     return ownerId;
   }

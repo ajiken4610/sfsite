@@ -5,6 +5,18 @@ export function toStrictProject(self: SFProject): StrictSFProject {
   return { ...DefaultSFProject, ...self };
 }
 
+export function toStrictOwner(self: {}): Owner {
+  return {
+    ...{
+      name: "No Name",
+      description: "No Description",
+      parent: null,
+      icon: null,
+    },
+    ...self,
+  };
+}
+
 export function projectToBigramArray(self: SFProject) {
   let texts: string[] = [];
   for (const prop of ["title", "description", "owner"]) {
@@ -85,4 +97,5 @@ export class Owner {
   name: string;
   description: string;
   parent: string | null;
+  icon: string;
 }
