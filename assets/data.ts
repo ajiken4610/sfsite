@@ -1,3 +1,6 @@
+import { SFProjectData } from "~~/composables/firestore";
+import { Owner, SFProject } from "~~/composables/SFProject";
+
 export default {
   owners: {
     "573948": {
@@ -787,4 +790,15 @@ export default {
       員会: ["4277pq"],
     },
   },
+} as {
+  owners: {
+    [key: string]: {
+      name: string;
+      description: string;
+      childIds?: string[];
+      parent?: string;
+    };
+  };
+  projects: { [key: string]: SFProjectData };
+  bigrams: any;
 };

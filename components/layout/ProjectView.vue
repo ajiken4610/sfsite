@@ -1,34 +1,36 @@
 <template lang="pug">
-.title-owner-wrapper(v-if="project.type !== 'youtube'")
-  span.text-muted.tag(v-if="project.tags", v-for="tag in project.tags") {{ "#" + tag }}
-  h1(v-html="project.title")
-  PartsShareButton.float-end
-  .h5.text-muted {{ ownerName }}
-.iframe-wrapper(v-if="project.type !== 'none'")
-  img(v-if="project.thumbnail", :src="project.thumbnail")
-  .position-absolute.d-table.h-100.w-100 
-    .display-1.d-table-cell.align-middle.text-center Loading...
-  iframe(
-    v-if="allowLoad",
-    :src="getFrameLink(project)",
-    frameborder="0",
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-    allowfullscreen
-  )
-.title-owner-wrapper(v-if="project.type === 'youtube'")
-  span.text-muted.tag(v-if="project.tags", v-for="tag in project.tags") {{ "#" + tag }}
-  .h5(v-html="project.title")
-  PartsShareButton.float-end
-  .text-muted {{ ownerName }}
-hr
-.description-wrapper
-  PartsMarkdownViewer.description(:src="project.description")
+.project-wrapper
+  .title-owner-wrapper(v-if="project.type !== 'youtube'")
+    span.text-muted.tag(v-if="project.tags", v-for="tag in project.tags") {{ "#" + tag }}
+    h1(v-html="project.title")
+    PartsShareButton.float-end
+    .h5.text-muted {{ ownerName }}
+  .iframe-wrapper(v-if="project.type !== 'none'")
+    img(v-if="project.thumbnail", :src="project.thumbnail")
+    .position-absolute.d-table.h-100.w-100 
+      .display-1.d-table-cell.align-middle.text-center Loading...
+    iframe(
+      v-if="allowLoad",
+      :src="getFrameLink(project)",
+      frameborder="0",
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+      allowfullscreen
+    )
+  .title-owner-wrapper(v-if="project.type === 'youtube'")
+    span.text-muted.tag(v-if="project.tags", v-for="tag in project.tags") {{ "#" + tag }}
+    .h5(v-html="project.title")
+    PartsShareButton.float-end
+    .text-muted {{ ownerName }}
+  hr
+  .description-wrapper
+    PartsMarkdownViewer.description(:src="project.description")
 </template>
 
 <script setup lang="ts">
 import { StrictSFProject } from "~~/composables/SFProject";
 
 const props = defineProps<{ project: StrictSFProject }>();
+console.log(props.project);
 
 const allowLoad = ref(false);
 setTimeout(() => {
@@ -41,11 +43,15 @@ const ownerName = computed(() =>
 );
 
 const defaultRatio = computed(
-  () => ({ youtube: "56.25%" }?.[props.project.type.toString() || ""] || "100%")
+  () => ({ youtube: "56.25%" }?.[props.project.type || ""] || "100%")
 );
 </script>
 
 <style scoped lang="scss">
+.project-wrapper > :not(:last-child) {
+  margin-bottom: 1rem;
+}
+
 .iframe-wrapper {
   position: relative;
   padding-bottom: min(90vh, v-bind("project?.ratio || defaultRatio"));

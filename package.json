@@ -15,15 +15,16 @@
     "highlight.js": "^11.6.0",
     "katex": "^0.16.0",
     "marked": "^4.0.18",
-    "nuxt": "3.0.0-rc.5",
+    "nuxt": "3.0.0-rc.6",
     "prettier": "^2.7.1",
     "pug": "^3.0.2",
     "sanitize-html": "^2.7.0",
     "sass": "^1.53.0",
-    "vue-select": "^4.0.0-beta.3"
-  },
-  "dependencies": {
+    "vue-select": "^4.0.0-beta.3",
     "@types/three": "^0.142.0",
     "three": "^0.142.0"
+  },
+  "dependencies": {
+    
   }
 }

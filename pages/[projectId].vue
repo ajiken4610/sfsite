@@ -1,8 +1,35 @@
 <template lang="pug">
 div
-  LayoutProjectView(v-if="project", :project="project.project")
+  Head(v-if="project")
+    Title {{ project.title }}
+    Meta(
+      v-if="project.thumbnail",
+      name="thumbnail",
+      :content="project.thumbnail"
+    )
+    Meta(
+      v-if="project.description",
+      name="description",
+      :content="project.description"
+    )
+  .display-1.text-center(v-if="!project") Loading...
+  .project-wrapper(v-else)
+    LayoutProjectView(:project="project")
 </template>
 
 <script setup lang="ts">
-const project = useProjectData(useRoute().params.projectId.toString()).data;
+const project = computed(() => toStrictProject(data.value?.project));
+
+const route = useRoute();
+
+const { pending, data } = useProjectData(route.params.projectId.toString());
 </script>
+
+<style scoped lang="scss">
+.horizontal-card-wrapper > * {
+  max-width: 24rem;
+}
+.horizontal-card-wrapper > :not(:last-child) {
+  margin-bottom: 1.5rem;
+}
+</style>
