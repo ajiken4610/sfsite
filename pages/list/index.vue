@@ -3,7 +3,11 @@ div
   h1 企画一覧
   PartsProjectCardList(:projects="projectList")
   h1.mt-4 所属一覧
-  PartsOwnerCard(:ownerId="'0f46rv'")
+  .row
+    PartsOwnerStructureView(
+      :structure="{ '6lqg5f': data.owners['6lqg5f'] }",
+      :show="true"
+    )
 </template>
 
 <script setup lang="ts">

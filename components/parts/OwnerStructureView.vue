@@ -1,14 +1,16 @@
 <template lang="pug">
-template(v-for="(value, key) in structure")
-  .ms-2(
-    data-bs-toggle="collapse",
-    :data-bs-target="'#owner-structure-' + key",
-    :class="{ 'dropdown-toggle': value.childIds?.length, 'd-inline': !value.childIds?.length }"
-  )
-    NuxtLink(:to="'/owner/' + key") {{ value.name }}
-  .collapse.show.border-start.ms-2(
-    v-if="value.childIds",
-    :id="'owner-structure-' + key"
+span(v-for="(value, key) in structure")
+  .d-flex.m-1
+    PartsOwnerCard(:ownerId="key.toString()")
+    .ms-2(
+      data-bs-toggle="collapse",
+      :data-bs-target="'#owner-structure-' + key",
+      :class="{ 'dropdown-toggle': value.childIds?.length, 'd-inline': !value.childIds?.length }"
+    )
+  .collapse.ms-2.border.rounded(
+    v-if="value.childIds?.length",
+    :id="'owner-structure-' + key",
+    :class="{ show }"
   )
     OwnerStructureView(:structure="childs(value.childIds)")
 </template>
@@ -19,16 +21,18 @@ const owners = data.owners;
 <script setup lang="ts">
 import data from "~~/assets/data";
 
-const props = defineProps<{
-  structure: {
-    [key: string]: { childIds?: string[]; name: string; description: string };
-  };
-}>();
-console.log(props.structure);
+withDefaults(
+  defineProps<{
+    structure: {
+      [key: string]: { childIds?: string[]; name: string; description: string };
+    };
+    show?: boolean;
+  }>(),
+  { show: false }
+);
 const childs = (ids: string[]) => {
   const ret = {};
   for (const id of ids) {
-    console.log(id);
     ret[id] = owners[id];
   }
   return ret;
