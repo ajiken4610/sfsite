@@ -1,7 +1,7 @@
 <template lang="pug">
 div
   LayoutHeader
-  .container
+  .container.my-4
     slot
   LayoutFooter
   LayoutLoadingOverlay
@@ -87,7 +87,8 @@ $card-height: 100%;
 
 @import "vue-select/dist/vue-select.css";
 
-@import "bootstrap-icons/font/bootstrap-icons";
+@import "bootstrap-icons/font/bootstrap-icons.css";
+@import "katex/dist/katex.min.css";
 
 $custom-colors: (
   "sfsite": #181b2c,

@@ -18,7 +18,7 @@
           template(v-if="project.tags", v-for="tag in project.tags") {{ "#" + tag + " " }}
         .h6.card-title {{ project.title }}
         .fs-light.text-muted {{ ownerName }}
-  NuxtLink.stretched-link(:to="'/preview/' + props.project.pid")
+  NuxtLink.stretched-link(:to="'/' + props.project.pid")
 </template>
 
 <script lang="ts">
@@ -45,9 +45,7 @@ const ownerName = computed(() => {
   if (pending.value) {
     return "Loading";
   } else {
-    return (
-      owners.value && getOwnerName(owners.value?.childRef, props.project.owner)
-    );
+    return owners.value && getOwnerName(owners.value, props.project.owner);
   }
 });
 

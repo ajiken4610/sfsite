@@ -1,7 +1,7 @@
 <template lang="pug">
 .row.row-cols-1.row-cols-sm-2.row-cols-xl-4.g-4
-  .col(v-for="project in projects")
-    PartsProjectCard(:project="toStrictProject(project)")
+  .col(v-for="(project, id) in projects")
+    PartsProjectCard(:project="toStrictProject(project)", :link="id")
 </template>
 
 <script setup lang="ts">

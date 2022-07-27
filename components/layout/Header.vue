@@ -13,7 +13,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.shadow-lg
       span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse
       ul.navbar-nav.mb-2.mb-lg-0.position-relative
-        li.nav-item test button
+        li.nav-item 
+          NuxtLink(to="/list") 企画一覧
       .d-flex.search-box(
         :class="{ searchBoxFocused, searchBoxFocusedDelayed, 'ms-auto': !searchBoxFocused }"
       )
@@ -23,9 +24,12 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.shadow-lg
             placeholder="検索...",
             aria-label="Search",
             @focusin="searchBoxFocused = true",
-            @focusout="searchBoxFocused = false"
+            @focusout="searchBoxFocused = false",
+            @keydown.enter="search",
+            v-model="searchBoxValue",
+            ref="searchBox"
           )
-          button.btn.btn-outline-light(type="submit")
+          button.btn.btn-outline-light(@click="search")
             .bi-search
 </template>
 
@@ -73,6 +77,23 @@ watch(searchBoxFocused, () => {
     }
   }
 });
+const searchBoxValue = ref("");
+const searchBox = ref<HTMLInputElement>();
+const search = () => {
+  const value = searchBoxValue.value;
+  if (value.length > 1) {
+    searchBox.value.blur();
+    useRouter().push("/list/" + value);
+  } else if (value.length == 0) {
+    searchBox.value.blur();
+    useRouter().push("/list");
+  } else {
+    showToast({
+      title: "検索エラー",
+      body: "検索語句は2文字以上である必要があります",
+    });
+  }
+};
 </script>
 
 <style scoped lang="scss">
@@ -85,5 +106,6 @@ watch(searchBoxFocused, () => {
 
 .search-box {
   transition: all 0.5s ease;
+  z-index: 2000;
 }
 </style>

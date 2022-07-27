@@ -22,7 +22,7 @@ const project = computed(() => toStrictProject(data.value?.project));
 
 const route = useRoute();
 
-const { pending, data } = useProjectData(route.params.projectId.toString());
+const { data } = useProjectData(route.params.projectId.toString());
 </script>
 
 <style scoped lang="scss">
