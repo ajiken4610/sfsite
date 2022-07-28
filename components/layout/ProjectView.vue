@@ -17,7 +17,11 @@
       allowfullscreen
     )
   .title-owner-wrapper(v-if="project.type === 'youtube'")
-    span.text-muted.tag(v-if="project.tags", v-for="tag in project.tags") {{ "#" + tag }}
+    NuxtLink.text-muted.tag(
+      v-if="project.tags",
+      v-for="tag in project.tags",
+      :to="'/list/' + tag"
+    ) {{ "#" + tag }}
     .h5(v-html="project.title")
     PartsShareButton.float-end
     .text-muted {{ ownerName }}

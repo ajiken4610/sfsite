@@ -15,10 +15,19 @@ div
 
 <script setup lang="ts">
 import data from "~~/assets/data";
-import { Owner, SFProject } from "~~/composables/SFProject";
+import { SFProject } from "~~/composables/SFProject";
 
-const query = useRoute().params.query.toString();
-const bigram = BiGram.createBiGramArray(query, " 　");
+const query = ref(useRoute().params.query?.toString?.() || "");
+watch(
+  useRoute(),
+  (val) => {
+    if (val.params.onwerId) {
+      query.value = val.params.query?.toString?.() || "";
+    }
+  },
+  { immediate: true }
+);
+const bigram = BiGram.createBiGramArray(query.value, " 　");
 let projects: SFProject[] = [];
 if (bigram[0] && data.bigrams.projects[bigram[0]]) {
   let matchProject = data.bigrams.projects[bigram[0]];
