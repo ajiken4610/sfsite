@@ -73,7 +73,6 @@ onMounted(() => {
   nextTick(async () => {
     // レンダラの初期化
     const renderer = new WebGLRenderer();
-    renderer.shadowMap.enabled = true;
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setClearColor(0x000000);

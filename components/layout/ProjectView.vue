@@ -1,10 +1,14 @@
 <template lang="pug">
 .project-wrapper
   .title-owner-wrapper(v-if="project.type !== 'youtube'")
-    span.text-muted.tag(v-if="project.tags", v-for="tag in project.tags") {{ "#" + tag }}
+    NuxtLink.text-muted.tag(
+      v-if="project.tags",
+      v-for="tag in project.tags",
+      :to="'/list/' + tag"
+    ) {{ "#" + tag }}
     h1(v-html="project.title")
     PartsShareButton.float-end
-    .h5.text-muted {{ ownerName }}
+    NuxtLink.h5.text-muted(:to="'/@' + project.owner") {{ ownerName }}
   .iframe-wrapper(v-if="project.type !== 'none'")
     img(v-if="project.thumbnail", :src="project.thumbnail")
     .position-absolute.d-table.h-100.w-100 
@@ -24,7 +28,7 @@
     ) {{ "#" + tag }}
     .h5(v-html="project.title")
     PartsShareButton.float-end
-    .text-muted {{ ownerName }}
+    NuxtLink.text-muted(:to="'/@' + project.owner") {{ ownerName }}
   hr
   .description-wrapper
     PartsMarkdownViewer.description(:src="project.description")

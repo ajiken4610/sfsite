@@ -1,5 +1,5 @@
 <template lang="pug">
-nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.shadow-lg
+nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.shadow-lg(ref="headerElement")
   .container-fluid
     NuxtLink.navbar-brand(to="/home") Salesio Festa
     button.navbar-toggler(
@@ -94,6 +94,14 @@ const search = () => {
     });
   }
 };
+const headerElement = ref<HTMLElement>(null);
+onMounted(() => {
+  const observer = new ResizeObserver((e) => {
+    const height = useState("nav-height", () => 0);
+    height.value = e[0].contentRect.height;
+  });
+  observer.observe(headerElement.value);
+});
 </script>
 
 <style scoped lang="scss">
