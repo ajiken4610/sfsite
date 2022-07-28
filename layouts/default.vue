@@ -72,10 +72,10 @@ let mouseX = 0.5,
 let currentX = 0.5,
   currentY = 0.25;
 onMounted(async () => {
-  window.addEventListener("mousemove", (e) => {
-    mouseX = e.x / renderer.domElement.clientWidth;
-    mouseY = e.y / renderer.domElement.clientHeight;
-  });
+  // window.addEventListener("mousemove", (e) => {
+  //   mouseX = e.x / renderer.domElement.clientWidth;
+  //   mouseY = e.y / renderer.domElement.clientHeight;
+  // });
   // const particleCount = 64;
   // let gpgpuRenderTarget1 = new WebGLRenderTarget(10, particleCount, {
   //   depthBuffer: false,
@@ -89,7 +89,6 @@ onMounted(async () => {
   //   minFilter: NearestFilter,
   //   magFilter: NearestFilter,
   // });
-
   // const gpgpuGeometory = new PlaneBufferGeometry(2, 2);
   // const gpgpuMaterial = new ShaderMaterial({
   //   vertexShader: `
@@ -183,7 +182,6 @@ onMounted(async () => {
   // gpgpuCamera.near = 0.1;
   // gpgpuCamera.far = 2;
   // gpgpuCamera.updateProjectionMatrix();
-
   // // パーティクル
   // const particleGeometory = new BufferGeometry();
   // const indexes = new Float32Array(particleCount);
@@ -243,10 +241,8 @@ onMounted(async () => {
   //   },
   // });
   // const particlePoints = new Points(particleGeometory, particleMaterial);
-
   // const particleScene = new Scene();
   // particleScene.add(particlePoints);
-
   // const particleCamera = new OrthographicCamera();
   // particleCamera.position.set(0.5, 0.5, 1);
   // particleCamera.lookAt(0, 0, 0);
@@ -257,99 +253,83 @@ onMounted(async () => {
   // particleCamera.near = 0.01;
   // particleCamera.far = 5;
   // particleCamera.updateProjectionMatrix();
-
-  const renderer = new WebGLRenderer();
-  renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setClearAlpha(0);
-  container.value.appendChild(renderer.domElement);
-
-  // コンポーザーの初期化
-  const composer = new EffectComposer(renderer);
-
-  // レンダーパス：描画
-  const renderPass = new RenderPass(
-    new Scene(),
-    new PerspectiveCamera(50, 1, 0.1, 10)
-    //camera
-  );
-
-  // セーブパス：描画されたものを保存する => フレームバッファオブジェクト(3)
-  const savePass = new SavePass(
-    new WebGLRenderTarget(window.innerWidth, window.innerHeight, {
-      minFilter: LinearFilter,
-      magFilter: LinearFilter,
-      stencilBuffer: false,
-    })
-  );
-
-  // ブレンドパス(シェーダパス) 色をブレンドする(2)
-  const blendPass = new ShaderPass(
-    BlendShader, // シェーダ
-    "tDiffuse1" // TextureID？ => 前のパス(RenderPass)から受け取ったテクスチャを入れるスロット名,デフォルトは"tDiffuse"だが、このシェーダにはないので、上書き
-  );
-  blendPass.uniforms.tDiffuse2.value = savePass.renderTarget.texture;
-  blendPass.uniforms.mixRatio.value = 0.85;
-
-  let blurSize = 0;
-
-  // 水平ブラー (4)
-  const horizontalBlurPass = new ShaderPass(HorizontalBlurShader);
-  horizontalBlurPass.uniforms.h.value = (1 / window.innerWidth) * blurSize;
-
-  // 垂直ブラー (5)
-  const verticalBlurPass = new ShaderPass(VerticalBlurShader);
-  verticalBlurPass.uniforms.v.value = (1 / window.innerHeight) * blurSize;
-
-  const fxaaPass = new ShaderPass(FXAAShader);
-  fxaaPass.uniforms.resolution.value.x = 1 / window.innerWidth;
-  fxaaPass.uniforms.resolution.value.y = 1 / window.innerHeight;
-
-  // アウトプットパス(6)
-  const outputPass = new ShaderPass(CopyShader);
-  outputPass.renderToScreen = true;
-
-  // パスを順番に追加
-  composer.addPass(renderPass);
-  composer.addPass(horizontalBlurPass);
-  composer.addPass(verticalBlurPass);
-  composer.addPass(fxaaPass);
-  composer.addPass(outputPass);
-
-  const onWindowResize = () => {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    horizontalBlurPass.uniforms.h.value = (1 / window.innerWidth) * blurSize;
-    verticalBlurPass.uniforms.v.value = (1 / window.innerHeight) * blurSize;
-    fxaaPass.uniforms.resolution.value.x = 1 / window.innerWidth;
-    fxaaPass.uniforms.resolution.value.y = 1 / window.innerHeight;
-    // particleCamera.updateProjectionMatrix();
-  };
-  window.addEventListener("resize", onWindowResize, false);
-  const startTime = Date.now();
-  const render = () => {
-    requestAnimationFrame(render);
-    // // GPGPUのレンダリング
-    // gpgpuMaterial.uniforms.u_Old.value = gpgpuRenderTarget2.texture;
-    // renderer.setRenderTarget(gpgpuRenderTarget1);
-    // renderer.render(gpgpuScene, gpgpuCamera);
-    // const flip = gpgpuRenderTarget1;
-    // gpgpuRenderTarget1 = gpgpuRenderTarget2;
-    // gpgpuRenderTarget2 = flip;
-
-    // // パーティクルのレンダリング
-    // particleMaterial.uniforms.u_CoordTexture.value = gpgpuRenderTarget1.texture;
-    // renderer.setRenderTarget(null);
-    // composer.render();
-
-    // gpgpuMaterial.uniforms.u_Time.value = Date.now() - startTime;
-
-    // currentX = currentX * 0.5 + mouseX * 0.5;
-    // currentY = currentY * 0.5 + ((mouseY + scroll) / 2) * 0.5;
-    // particleCamera.position.set(currentX * 0.5, currentY * 0.5, 1);
-    // particleCamera.updateProjectionMatrix();
-  };
-  render();
+  // const renderer = new WebGLRenderer();
+  // renderer.setPixelRatio(window.devicePixelRatio);
+  // renderer.setSize(window.innerWidth, window.innerHeight);
+  // renderer.setClearAlpha(0);
+  // container.value.appendChild(renderer.domElement);
+  // // コンポーザーの初期化
+  // const composer = new EffectComposer(renderer);
+  // // レンダーパス：描画
+  // const renderPass = new RenderPass(
+  //   new Scene(),
+  //   new PerspectiveCamera(50, 1, 0.1, 10)
+  //   //camera
+  // );
+  // // セーブパス：描画されたものを保存する => フレームバッファオブジェクト(3)
+  // const savePass = new SavePass(
+  //   new WebGLRenderTarget(window.innerWidth, window.innerHeight, {
+  //     minFilter: LinearFilter,
+  //     magFilter: LinearFilter,
+  //     stencilBuffer: false,
+  //   })
+  // );
+  // // ブレンドパス(シェーダパス) 色をブレンドする(2)
+  // const blendPass = new ShaderPass(
+  //   BlendShader, // シェーダ
+  //   "tDiffuse1" // TextureID？ => 前のパス(RenderPass)から受け取ったテクスチャを入れるスロット名,デフォルトは"tDiffuse"だが、このシェーダにはないので、上書き
+  // );
+  // blendPass.uniforms.tDiffuse2.value = savePass.renderTarget.texture;
+  // blendPass.uniforms.mixRatio.value = 0.85;
+  // let blurSize = 0;
+  // // 水平ブラー (4)
+  // const horizontalBlurPass = new ShaderPass(HorizontalBlurShader);
+  // horizontalBlurPass.uniforms.h.value = (1 / window.innerWidth) * blurSize;
+  // // 垂直ブラー (5)
+  // const verticalBlurPass = new ShaderPass(VerticalBlurShader);
+  // verticalBlurPass.uniforms.v.value = (1 / window.innerHeight) * blurSize;
+  // const fxaaPass = new ShaderPass(FXAAShader);
+  // fxaaPass.uniforms.resolution.value.x = 1 / window.innerWidth;
+  // fxaaPass.uniforms.resolution.value.y = 1 / window.innerHeight;
+  // // アウトプットパス(6)
+  // const outputPass = new ShaderPass(CopyShader);
+  // outputPass.renderToScreen = true;
+  // // パスを順番に追加
+  // composer.addPass(renderPass);
+  // composer.addPass(horizontalBlurPass);
+  // composer.addPass(verticalBlurPass);
+  // composer.addPass(fxaaPass);
+  // composer.addPass(outputPass);
+  // const onWindowResize = () => {
+  //   renderer.setSize(window.innerWidth, window.innerHeight);
+  //   horizontalBlurPass.uniforms.h.value = (1 / window.innerWidth) * blurSize;
+  //   verticalBlurPass.uniforms.v.value = (1 / window.innerHeight) * blurSize;
+  //   fxaaPass.uniforms.resolution.value.x = 1 / window.innerWidth;
+  //   fxaaPass.uniforms.resolution.value.y = 1 / window.innerHeight;
+  //   // particleCamera.updateProjectionMatrix();
+  // };
+  // window.addEventListener("resize", onWindowResize, false);
+  // const startTime = Date.now();
+  // const render = () => {
+  //   requestAnimationFrame(render);
+  //   // // GPGPUのレンダリング
+  //   // gpgpuMaterial.uniforms.u_Old.value = gpgpuRenderTarget2.texture;
+  //   // renderer.setRenderTarget(gpgpuRenderTarget1);
+  //   // renderer.render(gpgpuScene, gpgpuCamera);
+  //   // const flip = gpgpuRenderTarget1;
+  //   // gpgpuRenderTarget1 = gpgpuRenderTarget2;
+  //   // gpgpuRenderTarget2 = flip;
+  //   // // パーティクルのレンダリング
+  //   // particleMaterial.uniforms.u_CoordTexture.value = gpgpuRenderTarget1.texture;
+  //   // renderer.setRenderTarget(null);
+  //   // composer.render();
+  //   // gpgpuMaterial.uniforms.u_Time.value = Date.now() - startTime;
+  //   // currentX = currentX * 0.5 + mouseX * 0.5;
+  //   // currentY = currentY * 0.5 + ((mouseY + scroll) / 2) * 0.5;
+  //   // particleCamera.position.set(currentX * 0.5, currentY * 0.5, 1);
+  //   // particleCamera.updateProjectionMatrix();
+  // };
+  // render();
 });
 
 window.addEventListener("scroll", function () {
