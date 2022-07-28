@@ -1,5 +1,6 @@
 <template lang="pug">
 NuxtLayout(:name="$route.path === '/' ? 'full-screen' : 'default'")
+  NuxtLoadingIndicator(color="#ff2222")
   NuxtPage(key="content")
 </template>
 <script setup lang="ts">

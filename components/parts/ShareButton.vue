@@ -1,5 +1,5 @@
 <template lang="pug">
-.dropdown(:class="{copied}")
+.dropdown(:class="{ copied }")
   i.share-button.bi-share.h3.dropdown-toggle(data-bs-toggle="dropdown")
   ul.dropdown-menu.dropdown-menu-dark.dropdown-menu-end
     li.dropdown-item(@click="openTwitter")
@@ -11,15 +11,16 @@
     li.dropdown-item(@click="copyToClipboard")
       span.bi-clipboard
       span.share Clipboard
-    li.dropdown-item.shareAPI(v-if="shareAPIEnabled" @click="share" )
+    li.dropdown-item.shareAPI(v-if="shareAPIEnabled", @click="share")
       span.bi-three-dots
       span.share Other
-
 </template>
 
 <script setup lang="ts">
 const props = defineProps<{ link?: string; message?: string }>();
-const message = props.message ?? "サレ祭のこの企画が面白い！";
+const message =
+  props.message ??
+  `サレ祭のこの${useRoute().path.match(/@/) ? "所属" : "企画"}が面白い！`;
 const link = props.link ?? "https://" + location.host + useRoute().path;
 const messageLink = "#サレ祭 #サレ祭2022\n" + message + "\n" + link + "\n";
 const shareAPIEnabled = !!window.navigator.share;

@@ -1,17 +1,25 @@
 import { getName } from "domutils";
+import { StringKeyframeTrack } from "three";
 import { BiGram } from "./Utils";
 
 export function toStrictProject(self: SFProject): StrictSFProject {
   return { ...DefaultSFProject, ...self };
 }
 
-export function toStrictOwner(self: {}): Owner {
+export function toStrictOwner(self: {}): {
+  name: string;
+  description: string;
+  parent: string;
+  icon: string;
+  childIds: string[];
+} {
   return {
     ...{
       name: "No Name",
       description: "No Description",
       parent: null,
       icon: null,
+      childIds: [],
     },
     ...self,
   };

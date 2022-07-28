@@ -63,6 +63,10 @@ $toast-header-background-color: rgba(black, 0.1);
 
 $dropdown-link-color: $body-bg;
 
+$nav-link-color: $body-color;
+$nav-link-hover-color: $body-color;
+$nav-tabs-link-active-color: $body-color;
+
 $btn-close-color: $body-color;
 
 $card-height: 100%;
@@ -106,7 +110,7 @@ a:hover {
 .page-enter-from,
 .page-leave-to,
 .page-leave-active {
-  transform: translateY(-100vh);
+  transform: translateY(-100%);
   opacity: 0;
 }
 

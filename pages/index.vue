@@ -637,9 +637,10 @@ onMounted(() => {
 
       horizontalBlurPass.uniforms.h.value = (1 / window.innerWidth) * blurSize;
       verticalBlurPass.uniforms.v.value = (1 / window.innerHeight) * blurSize;
-      blurSize = clicked.value
-        ? blurSize + 0.03
-        : Math.max(0.1, blurSize - 0.03);
+      blurSize =
+        clicked.value && toFes < 0
+          ? blurSize + 0.03
+          : Math.max(0.1, blurSize - 0.03);
 
       if (clicked.value && blurSize > 5) {
         running.value = false;
