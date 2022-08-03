@@ -7,6 +7,7 @@
       :to="'/list/' + tag"
     ) {{ "#" + tag }}
     h1(v-html="project.title")
+    PartsLikeButton(:id="project.pid").float-end
     PartsShareButton.float-end
     NuxtLink.h5.text-muted(:to="'/@' + project.owner") {{ ownerName }}
   .iframe-wrapper(v-if="project.type !== 'none'")
