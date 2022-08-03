@@ -1,63 +1,27 @@
 {
   "owners": {
-    "wpnigr": {
-      "name": "キルトBee",
-      "description": "キルトBee",
-      "parent": "8wx6w3",
+    "imy22l": {
+      "name": "アーカイブ",
+      "description": "アーカイブ",
+      "parent": "u9y308",
       "childIds": []
     },
-    "8wx6w3": {
-      "name": "保護者会",
-      "description": "保護者会",
+    "zddsak": {
+      "name": "ライブ",
+      "description": "ライブ",
+      "parent": "u9y308",
+      "childIds": []
+    },
+    "u9y308": {
+      "name": "生配信",
+      "description": "生配信",
       "parent": "k3hy28",
-      "childIds": ["wpnigr"]
+      "childIds": ["imy22l", "zddsak"]
     },
     "s3qbkj": {
       "name": "体験授業",
       "description": "体験授業",
       "parent": "k3hy28",
-      "childIds": []
-    },
-    "8cbhhi": {
-      "name": "有志企画",
-      "description": "有志企画",
-      "parent": "k3hy28",
-      "childIds": []
-    },
-    "igq9rg": {
-      "name": "広報班",
-      "description": "広報班",
-      "parent": "itkkr2",
-      "childIds": []
-    },
-    "vyqag8": {
-      "name": "実行委員",
-      "description": "実行委員",
-      "parent": "itkkr2",
-      "childIds": []
-    },
-    "g56ke2": {
-      "name": "総務班",
-      "description": "総務班",
-      "parent": "itkkr2",
-      "childIds": []
-    },
-    "rztllv": {
-      "name": "執行班",
-      "description": "執行班",
-      "parent": "itkkr2",
-      "childIds": []
-    },
-    "gblyly": {
-      "name": "会計班",
-      "description": "会計班",
-      "parent": "itkkr2",
-      "childIds": []
-    },
-    "gqizv0": {
-      "name": "装飾班",
-      "description": "装飾班",
-      "parent": "itkkr2",
       "childIds": []
     },
     "lgi6q3": {
@@ -72,9 +36,21 @@
       "parent": "itkkr2",
       "childIds": ["lgi6q3"]
     },
-    "z370e9": {
-      "name": "美術班",
-      "description": "美術班",
+    "ffey1o": {
+      "name": "アカデミア班",
+      "description": "アカデミア班",
+      "parent": "itkkr2",
+      "childIds": []
+    },
+    "vyqag8": {
+      "name": "実行委員",
+      "description": "実行委員",
+      "parent": "itkkr2",
+      "childIds": []
+    },
+    "rztllv": {
+      "name": "執行班",
+      "description": "執行班",
       "parent": "itkkr2",
       "childIds": []
     },
@@ -84,15 +60,39 @@
       "parent": "itkkr2",
       "childIds": []
     },
+    "g56ke2": {
+      "name": "総務班",
+      "description": "総務班",
+      "parent": "itkkr2",
+      "childIds": []
+    },
     "gc2ko3": {
       "name": "アーチ班",
       "description": "アーチ班",
       "parent": "itkkr2",
       "childIds": []
     },
-    "ffey1o": {
-      "name": "アカデミア班",
-      "description": "アカデミア班",
+    "z370e9": {
+      "name": "美術班",
+      "description": "美術班",
+      "parent": "itkkr2",
+      "childIds": []
+    },
+    "gblyly": {
+      "name": "会計班",
+      "description": "会計班",
+      "parent": "itkkr2",
+      "childIds": []
+    },
+    "igq9rg": {
+      "name": "広報班",
+      "description": "広報班",
+      "parent": "itkkr2",
+      "childIds": []
+    },
+    "gqizv0": {
+      "name": "装飾班",
+      "description": "装飾班",
       "parent": "itkkr2",
       "childIds": []
     },
@@ -101,120 +101,54 @@
       "description": "運営",
       "parent": "k3hy28",
       "childIds": [
-        "igq9rg",
-        "vyqag8",
-        "g56ke2",
-        "rztllv",
-        "gblyly",
-        "gqizv0",
         "hquhpv",
-        "z370e9",
+        "ffey1o",
+        "vyqag8",
+        "rztllv",
         "nfquwm",
+        "g56ke2",
         "gc2ko3",
-        "ffey1o"
+        "z370e9",
+        "gblyly",
+        "igq9rg",
+        "gqizv0"
       ]
     },
-    "0cijhq": {
-      "name": "C組",
-      "description": "C組",
-      "parent": "cvgpo8",
-      "childIds": []
-    },
-    "swluh0": {
-      "name": "A組",
-      "description": "A組",
-      "parent": "cvgpo8",
-      "childIds": []
-    },
-    "tqvxis": {
+    "p8lcto": {
       "name": "D組",
       "description": "D組",
-      "parent": "cvgpo8",
+      "parent": "av6drx",
       "childIds": []
     },
-    "6v8t4u": {
-      "name": "B組",
-      "description": "B組",
-      "parent": "cvgpo8",
-      "childIds": []
-    },
-    "cvgpo8": {
-      "name": "4年",
-      "description": "4年",
-      "parent": "52z2zq",
-      "childIds": ["0cijhq", "swluh0", "tqvxis", "6v8t4u"]
-    },
-    "6oj4lo": {
+    "555pxk": {
       "name": "C組",
       "description": "C組",
-      "parent": "2cub1f",
+      "parent": "av6drx",
       "childIds": []
     },
-    "ednjcv": {
-      "name": "D組",
-      "description": "D組",
-      "parent": "2cub1f",
-      "childIds": []
-    },
-    "82ohj8": {
+    "49rdyv": {
       "name": "B組",
       "description": "B組",
-      "parent": "2cub1f",
+      "parent": "av6drx",
       "childIds": []
     },
-    "3hgbpw": {
+    "cygja0": {
       "name": "A組",
       "description": "A組",
-      "parent": "2cub1f",
+      "parent": "av6drx",
       "childIds": []
     },
-    "2cub1f": {
-      "name": "3年",
-      "description": "3年",
+    "av6drx": {
+      "name": "1年",
+      "description": "1年",
       "parent": "52z2zq",
-      "childIds": ["6oj4lo", "ednjcv", "82ohj8", "3hgbpw"]
+      "childIds": ["p8lcto", "555pxk", "49rdyv", "cygja0"]
     },
-    "v59rvq": {
-      "name": "F組",
-      "description": "F組",
-      "parent": "huy0cp",
-      "childIds": []
-    },
-    "vtdcf8": {
+    "qgks6m": {
       "name": "D組",
       "description": "D組",
-      "parent": "huy0cp",
+      "parent": "kda52b",
       "childIds": []
-    },
-    "rynxj9": {
-      "name": "B組",
-      "description": "B組",
-      "parent": "huy0cp",
-      "childIds": []
-    },
-    "x521lq": {
-      "name": "A組",
-      "description": "A組",
-      "parent": "huy0cp",
-      "childIds": []
-    },
-    "5kb2sx": {
-      "name": "C組",
-      "description": "C組",
-      "parent": "huy0cp",
-      "childIds": []
-    },
-    "el3x9n": {
-      "name": "E組",
-      "description": "E組",
-      "parent": "huy0cp",
-      "childIds": []
-    },
-    "huy0cp": {
-      "name": "6年",
-      "description": "6年",
-      "parent": "52z2zq",
-      "childIds": ["v59rvq", "vtdcf8", "rynxj9", "x521lq", "5kb2sx", "el3x9n"]
     },
     "fuv8pv": {
       "name": "A組",
@@ -228,12 +162,6 @@
       "parent": "kda52b",
       "childIds": []
     },
-    "qgks6m": {
-      "name": "D組",
-      "description": "D組",
-      "parent": "kda52b",
-      "childIds": []
-    },
     "p2igfy": {
       "name": "C組",
       "description": "C組",
@@ -244,49 +172,7 @@
       "name": "2年",
       "description": "2年",
       "parent": "52z2zq",
-      "childIds": ["fuv8pv", "tirg3x", "qgks6m", "p2igfy"]
-    },
-    "cygja0": {
-      "name": "A組",
-      "description": "A組",
-      "parent": "av6drx",
-      "childIds": []
-    },
-    "p8lcto": {
-      "name": "D組",
-      "description": "D組",
-      "parent": "av6drx",
-      "childIds": []
-    },
-    "49rdyv": {
-      "name": "B組",
-      "description": "B組",
-      "parent": "av6drx",
-      "childIds": []
-    },
-    "555pxk": {
-      "name": "C組",
-      "description": "C組",
-      "parent": "av6drx",
-      "childIds": []
-    },
-    "av6drx": {
-      "name": "1年",
-      "description": "1年",
-      "parent": "52z2zq",
-      "childIds": ["cygja0", "p8lcto", "49rdyv", "555pxk"]
-    },
-    "dfdwaw": {
-      "name": "C組",
-      "description": "C組",
-      "parent": "99kjav",
-      "childIds": []
-    },
-    "wr4fuw": {
-      "name": "B組",
-      "description": "B組",
-      "parent": "99kjav",
-      "childIds": []
+      "childIds": ["qgks6m", "fuv8pv", "tirg3x", "p2igfy"]
     },
     "5t21xi": {
       "name": "A組",
@@ -300,9 +186,21 @@
       "parent": "99kjav",
       "childIds": []
     },
+    "dfdwaw": {
+      "name": "C組",
+      "description": "C組",
+      "parent": "99kjav",
+      "childIds": []
+    },
     "81knwh": {
       "name": "E組",
       "description": "E組",
+      "parent": "99kjav",
+      "childIds": []
+    },
+    "wr4fuw": {
+      "name": "B組",
+      "description": "B組",
       "parent": "99kjav",
       "childIds": []
     },
@@ -316,13 +214,133 @@
       "name": "5年",
       "description": "5年",
       "parent": "52z2zq",
-      "childIds": ["dfdwaw", "wr4fuw", "5t21xi", "gvxzes", "81knwh", "xrodbs"]
+      "childIds": ["5t21xi", "gvxzes", "dfdwaw", "81knwh", "wr4fuw", "xrodbs"]
+    },
+    "x521lq": {
+      "name": "A組",
+      "description": "A組",
+      "parent": "huy0cp",
+      "childIds": []
+    },
+    "el3x9n": {
+      "name": "E組",
+      "description": "E組",
+      "parent": "huy0cp",
+      "childIds": []
+    },
+    "5kb2sx": {
+      "name": "C組",
+      "description": "C組",
+      "parent": "huy0cp",
+      "childIds": []
+    },
+    "rynxj9": {
+      "name": "B組",
+      "description": "B組",
+      "parent": "huy0cp",
+      "childIds": []
+    },
+    "v59rvq": {
+      "name": "F組",
+      "description": "F組",
+      "parent": "huy0cp",
+      "childIds": []
+    },
+    "vtdcf8": {
+      "name": "D組",
+      "description": "D組",
+      "parent": "huy0cp",
+      "childIds": []
+    },
+    "huy0cp": {
+      "name": "6年",
+      "description": "6年",
+      "parent": "52z2zq",
+      "childIds": ["x521lq", "el3x9n", "5kb2sx", "rynxj9", "v59rvq", "vtdcf8"]
+    },
+    "82ohj8": {
+      "name": "B組",
+      "description": "B組",
+      "parent": "2cub1f",
+      "childIds": []
+    },
+    "6oj4lo": {
+      "name": "C組",
+      "description": "C組",
+      "parent": "2cub1f",
+      "childIds": []
+    },
+    "ednjcv": {
+      "name": "D組",
+      "description": "D組",
+      "parent": "2cub1f",
+      "childIds": []
+    },
+    "3hgbpw": {
+      "name": "A組",
+      "description": "A組",
+      "parent": "2cub1f",
+      "childIds": []
+    },
+    "2cub1f": {
+      "name": "3年",
+      "description": "3年",
+      "parent": "52z2zq",
+      "childIds": ["82ohj8", "6oj4lo", "ednjcv", "3hgbpw"]
+    },
+    "6v8t4u": {
+      "name": "B組",
+      "description": "B組",
+      "parent": "cvgpo8",
+      "childIds": []
+    },
+    "swluh0": {
+      "name": "A組",
+      "description": "A組",
+      "parent": "cvgpo8",
+      "childIds": []
+    },
+    "0cijhq": {
+      "name": "C組",
+      "description": "C組",
+      "parent": "cvgpo8",
+      "childIds": []
+    },
+    "tqvxis": {
+      "name": "D組",
+      "description": "D組",
+      "parent": "cvgpo8",
+      "childIds": []
+    },
+    "cvgpo8": {
+      "name": "4年",
+      "description": "4年",
+      "parent": "52z2zq",
+      "childIds": ["6v8t4u", "swluh0", "0cijhq", "tqvxis"]
     },
     "52z2zq": {
       "name": "クラス企画",
       "description": "クラス企画",
       "parent": "k3hy28",
-      "childIds": ["cvgpo8", "2cub1f", "huy0cp", "kda52b", "av6drx", "99kjav"]
+      "childIds": ["av6drx", "kda52b", "99kjav", "huy0cp", "2cub1f", "cvgpo8"]
+    },
+    "iaup3j": {
+      "name": "生徒会",
+      "description": "生徒会",
+      "parent": "axrg57",
+      "childIds": []
+    },
+    "m9erwp": {
+      "name": "図書",
+      "description": "図書",
+      "parent": "axrg57",
+      "childIds": []
+    },
+    "axrg57": {
+      "name": "委員会",
+      "description": "委員会",
+      "parent": "k3hy28",
+      "childIds": ["iaup3j", "m9erwp"]
     },
     "btvhca": {
       "name": "美術",
@@ -342,65 +360,17 @@
       "parent": "k3hy28",
       "childIds": ["btvhca", "meq08k"]
     },
-    "m9erwp": {
-      "name": "図書",
-      "description": "図書",
-      "parent": "axrg57",
+    "wpnigr": {
+      "name": "キルトBee",
+      "description": "キルトBee",
+      "parent": "8wx6w3",
       "childIds": []
     },
-    "iaup3j": {
-      "name": "生徒会",
-      "description": "生徒会",
-      "parent": "axrg57",
-      "childIds": []
-    },
-    "axrg57": {
-      "name": "委員会",
-      "description": "委員会",
+    "8wx6w3": {
+      "name": "保護者会",
+      "description": "保護者会",
       "parent": "k3hy28",
-      "childIds": ["m9erwp", "iaup3j"]
-    },
-    "vipsxr": {
-      "name": "パソコン部",
-      "description": "パソコン部",
-      "parent": "5obyu8",
-      "childIds": []
-    },
-    "5fyptc": {
-      "name": "鉄道模型部",
-      "description": "鉄道模型部",
-      "parent": "5obyu8",
-      "childIds": []
-    },
-    "7t04e1": {
-      "name": "軽音楽部",
-      "description": "軽音楽部",
-      "parent": "5obyu8",
-      "childIds": []
-    },
-    "qmxmeo": {
-      "name": "写真班",
-      "description": "写真班",
-      "parent": "w2qsnx",
-      "childIds": []
-    },
-    "rzaw4l": {
-      "name": "美術班",
-      "description": "美術班",
-      "parent": "w2qsnx",
-      "childIds": []
-    },
-    "w2qsnx": {
-      "name": "美術部",
-      "description": "美術部",
-      "parent": "5obyu8",
-      "childIds": ["qmxmeo", "rzaw4l"]
-    },
-    "ri6coz": {
-      "name": "ジャグリング部",
-      "description": "ジャグリング部",
-      "parent": "5obyu8",
-      "childIds": []
+      "childIds": ["wpnigr"]
     },
     "rxvxyn": {
       "name": "ピアノ同好会",
@@ -408,33 +378,9 @@
       "parent": "5obyu8",
       "childIds": []
     },
-    "2ikboe": {
-      "name": "化学班",
-      "description": "化学班",
-      "parent": "9jhixf",
-      "childIds": []
-    },
-    "dft3mr": {
-      "name": "生物班",
-      "description": "生物班",
-      "parent": "9jhixf",
-      "childIds": []
-    },
-    "72jhm3": {
-      "name": "物理班",
-      "description": "物理班",
-      "parent": "9jhixf",
-      "childIds": []
-    },
-    "9jhixf": {
-      "name": "自然科学部",
-      "description": "自然科学部",
-      "parent": "5obyu8",
-      "childIds": ["2ikboe", "dft3mr", "72jhm3"]
-    },
-    "4pcnlu": {
-      "name": "吹奏楽部",
-      "description": "吹奏楽部",
+    "svjbox": {
+      "name": "カトリック研究会",
+      "description": "カトリック研究会",
       "parent": "5obyu8",
       "childIds": []
     },
@@ -456,9 +402,9 @@
       "parent": "5obyu8",
       "childIds": ["iik7uq", "tiz4np"]
     },
-    "dbwl16": {
-      "name": "囲碁将棋同好会",
-      "description": "囲碁将棋同好会",
+    "ri6coz": {
+      "name": "ジャグリング部",
+      "description": "ジャグリング部",
       "parent": "5obyu8",
       "childIds": []
     },
@@ -468,9 +414,75 @@
       "parent": "5obyu8",
       "childIds": []
     },
-    "svjbox": {
-      "name": "カトリック研究会",
-      "description": "カトリック研究会",
+    "qmxmeo": {
+      "name": "写真班",
+      "description": "写真班",
+      "parent": "w2qsnx",
+      "childIds": []
+    },
+    "rzaw4l": {
+      "name": "美術班",
+      "description": "美術班",
+      "parent": "w2qsnx",
+      "childIds": []
+    },
+    "w2qsnx": {
+      "name": "美術部",
+      "description": "美術部",
+      "parent": "5obyu8",
+      "childIds": ["qmxmeo", "rzaw4l"]
+    },
+    "vipsxr": {
+      "name": "パソコン部",
+      "description": "昆布ことパソコン部です！",
+      "parent": "5obyu8",
+      "childIds": []
+    },
+    "dbwl16": {
+      "name": "囲碁将棋同好会",
+      "description": "囲碁将棋同好会",
+      "parent": "5obyu8",
+      "childIds": []
+    },
+    "dft3mr": {
+      "name": "生物班",
+      "description": "生物班",
+      "parent": "9jhixf",
+      "childIds": []
+    },
+    "72jhm3": {
+      "name": "物理班",
+      "description": "物理班",
+      "parent": "9jhixf",
+      "childIds": []
+    },
+    "2ikboe": {
+      "name": "化学班",
+      "description": "化学班",
+      "parent": "9jhixf",
+      "childIds": []
+    },
+    "9jhixf": {
+      "name": "自然科学部",
+      "description": "自然科学部",
+      "parent": "5obyu8",
+      "childIds": ["dft3mr", "72jhm3", "2ikboe"]
+    },
+    "4pcnlu": {
+      "name": "吹奏楽部",
+      "description": "吹奏楽部",
+      "parent": "5obyu8",
+      "childIds": []
+    },
+    "5fyptc": {
+      "name": "鉄道模型部",
+      "description": "鉄道模型部",
+      "parent": "5obyu8",
+      "childIds": []
+    },
+    "7t04e1": {
+      "name": "軽音楽部",
+      "description": "軽音楽部",
       "parent": "5obyu8",
       "childIds": []
     },
@@ -479,52 +491,40 @@
       "description": "部活動",
       "parent": "k3hy28",
       "childIds": [
-        "vipsxr",
-        "5fyptc",
-        "7t04e1",
-        "w2qsnx",
-        "ri6coz",
         "rxvxyn",
+        "svjbox",
+        "6rt9td",
+        "ri6coz",
+        "hlctmu",
+        "w2qsnx",
+        "vipsxr",
+        "dbwl16",
         "9jhixf",
         "4pcnlu",
-        "6rt9td",
-        "dbwl16",
-        "hlctmu",
-        "svjbox"
+        "5fyptc",
+        "7t04e1"
       ]
     },
-    "imy22l": {
-      "name": "アーカイブ",
-      "description": "アーカイブ",
-      "parent": "u9y308",
-      "childIds": []
-    },
-    "zddsak": {
-      "name": "ライブ",
-      "description": "ライブ",
-      "parent": "u9y308",
-      "childIds": []
-    },
-    "u9y308": {
-      "name": "生配信",
-      "description": "生配信",
+    "8cbhhi": {
+      "name": "有志企画",
+      "description": "有志企画",
       "parent": "k3hy28",
-      "childIds": ["imy22l", "zddsak"]
+      "childIds": []
     },
     "k3hy28": {
       "name": "2022",
       "description": "2022",
       "parent": "08cxku",
       "childIds": [
-        "8wx6w3",
+        "u9y308",
         "s3qbkj",
-        "8cbhhi",
         "itkkr2",
         "52z2zq",
-        "xhslqe",
         "axrg57",
+        "xhslqe",
+        "8wx6w3",
         "5obyu8",
-        "u9y308"
+        "8cbhhi"
       ]
     },
     "08cxku": { "name": "sf", "description": "sf", "childIds": ["k3hy28"] }
@@ -546,10 +546,11 @@
     "V2LT7V": {
       "project": {
         "title": "【Nuxt3】サレ祭のサイトのプレビューを作ってみましたわ～～～！！【ですわ～】",
-        "description": "# About\n今年のサイトは、Nuxt3を利用して作成しました。",
+        "description": "# About\n今年のサイトは、Nuxt3を利用して作成しました。\nNuxt3は、Vue3のフレームワークです。便利すぎて泣けた。\n開発が始まったころはまだベータ版で、開発している最中はRC版だったのですが、それでも十分でした。\n# データ管理\n去年まではサイトのデータはIT班がすべて手で打ち込んでいたのですが、今年は、企画投稿ページを作って、生徒一人一人が企画をかけるようにしました。\nそのおかげで、今年のサイトは去年までよりいくらかコンテンツの量が多くなっていると思います。",
         "owner": "hquhpv",
         "pid": "V2LT7V",
         "tags": ["nuxt3", "プログラミング", "パソコン"],
+        "thumbnail": "https://drive.google.com/uc?id=1d-APgWJl12FPUZunrav1sVJxFXC7aLz_",
         "type": "none"
       },
       "uid": "V2LT7V"
@@ -707,33 +708,16 @@
     "owners": {
       "20": ["k3hy28"],
       "22": ["k3hy28"],
-      "きる": ["wpnigr"],
-      "ると": ["wpnigr"],
-      "とb": ["wpnigr"],
-      "be": ["wpnigr"],
-      "ee": ["wpnigr"],
-      "保護": ["8wx6w3"],
-      "護者": ["8wx6w3"],
-      "者会": ["8wx6w3"],
+      "あー": ["imy22l", "gc2ko3"],
+      "ーか": ["imy22l"],
+      "かい": ["imy22l"],
+      "いぶ": ["imy22l", "zddsak"],
+      "らい": ["zddsak"],
+      "生配": ["u9y308"],
+      "配信": ["u9y308"],
       "体験": ["s3qbkj"],
       "験授": ["s3qbkj"],
       "授業": ["s3qbkj"],
-      "有志": ["8cbhhi"],
-      "志企": ["8cbhhi"],
-      "企画": ["8cbhhi", "52z2zq"],
-      "広報": ["igq9rg"],
-      "報班": ["igq9rg"],
-      "実行": ["vyqag8"],
-      "行委": ["vyqag8"],
-      "委員": ["vyqag8", "axrg57"],
-      "総務": ["g56ke2"],
-      "務班": ["g56ke2"],
-      "執行": ["rztllv"],
-      "行班": ["rztllv"],
-      "会計": ["gblyly"],
-      "計班": ["gblyly"],
-      "装飾": ["gqizv0"],
-      "飾班": ["gqizv0"],
       "れっ": ["lgi6q3"],
       "っど": ["lgi6q3"],
       "どす": ["lgi6q3"],
@@ -749,7 +733,7 @@
       "する": ["lgi6q3"],
       "る人": ["lgi6q3"],
       "人で": ["lgi6q3"],
-      "です": ["lgi6q3", "hquhpv"],
+      "です": ["lgi6q3", "hquhpv", "vipsxr"],
       "it": ["hquhpv"],
       "t班": ["hquhpv"],
       "され": ["hquhpv"],
@@ -778,107 +762,130 @@
       "まし": ["hquhpv"],
       "した": ["hquhpv"],
       "た。": ["hquhpv"],
-      "美術": ["z370e9", "btvhca", "rzaw4l", "w2qsnx"],
-      "術班": ["z370e9", "rzaw4l"],
-      "いべ": ["nfquwm"],
-      "べん": ["nfquwm"],
-      "んと": ["nfquwm"],
-      "と班": ["nfquwm"],
-      "あー": ["gc2ko3", "imy22l"],
-      "ーち": ["gc2ko3"],
-      "ち班": ["gc2ko3"],
       "あか": ["ffey1o"],
       "かで": ["ffey1o"],
       "でみ": ["ffey1o"],
       "みあ": ["ffey1o"],
       "あ班": ["ffey1o"],
+      "実行": ["vyqag8"],
+      "行委": ["vyqag8"],
+      "委員": ["vyqag8", "axrg57"],
+      "執行": ["rztllv"],
+      "行班": ["rztllv"],
+      "いべ": ["nfquwm"],
+      "べん": ["nfquwm"],
+      "んと": ["nfquwm"],
+      "と班": ["nfquwm"],
+      "総務": ["g56ke2"],
+      "務班": ["g56ke2"],
+      "ーち": ["gc2ko3"],
+      "ち班": ["gc2ko3"],
+      "美術": ["z370e9", "btvhca", "rzaw4l", "w2qsnx"],
+      "術班": ["z370e9", "rzaw4l"],
+      "会計": ["gblyly"],
+      "計班": ["gblyly"],
+      "広報": ["igq9rg"],
+      "報班": ["igq9rg"],
+      "装飾": ["gqizv0"],
+      "飾班": ["gqizv0"],
       "運営": ["itkkr2"],
-      "c組": ["0cijhq", "6oj4lo", "5kb2sx", "p2igfy", "555pxk", "dfdwaw"],
-      "a組": ["swluh0", "3hgbpw", "x521lq", "fuv8pv", "cygja0", "5t21xi"],
-      "d組": ["tqvxis", "ednjcv", "vtdcf8", "qgks6m", "p8lcto", "gvxzes"],
-      "b組": ["6v8t4u", "82ohj8", "rynxj9", "tirg3x", "49rdyv", "wr4fuw"],
-      "4年": ["cvgpo8"],
-      "3年": ["2cub1f"],
-      "f組": ["v59rvq", "xrodbs"],
-      "e組": ["el3x9n", "81knwh"],
-      "6年": ["huy0cp"],
-      "2年": ["kda52b"],
+      "d組": ["p8lcto", "qgks6m", "gvxzes", "vtdcf8", "ednjcv", "tqvxis"],
+      "c組": ["555pxk", "p2igfy", "dfdwaw", "5kb2sx", "6oj4lo", "0cijhq"],
+      "b組": ["49rdyv", "tirg3x", "wr4fuw", "rynxj9", "82ohj8", "6v8t4u"],
+      "a組": ["cygja0", "fuv8pv", "5t21xi", "x521lq", "3hgbpw", "swluh0"],
       "1年": ["av6drx"],
+      "2年": ["kda52b"],
+      "e組": ["81knwh", "el3x9n"],
+      "f組": ["xrodbs", "v59rvq"],
       "5年": ["99kjav"],
+      "6年": ["huy0cp"],
+      "3年": ["2cub1f"],
+      "4年": ["cvgpo8"],
       "くら": ["52z2zq"],
       "らす": ["52z2zq"],
       "す企": ["52z2zq"],
+      "企画": ["52z2zq", "8cbhhi"],
+      "生徒": ["iaup3j"],
+      "徒会": ["iaup3j"],
+      "図書": ["m9erwp"],
+      "員会": ["axrg57"],
       "国際": ["meq08k"],
       "際交": ["meq08k"],
       "交流": ["meq08k"],
       "教科": ["xhslqe"],
-      "図書": ["m9erwp"],
-      "生徒": ["iaup3j"],
-      "徒会": ["iaup3j"],
-      "員会": ["axrg57"],
-      "はそ": ["vipsxr"],
-      "そこ": ["vipsxr"],
-      "こん": ["vipsxr"],
-      "ん部": ["vipsxr"],
-      "鉄道": ["5fyptc"],
-      "道模": ["5fyptc"],
-      "模型": ["5fyptc"],
-      "型部": ["5fyptc"],
-      "軽音": ["7t04e1"],
-      "音楽": ["7t04e1"],
-      "楽部": ["7t04e1", "4pcnlu"],
-      "写真": ["qmxmeo"],
-      "真班": ["qmxmeo"],
-      "術部": ["w2qsnx"],
-      "じゃ": ["ri6coz"],
-      "ゃぐ": ["ri6coz"],
-      "ぐり": ["ri6coz"],
-      "りん": ["ri6coz"],
-      "んぐ": ["ri6coz"],
-      "ぐ部": ["ri6coz"],
+      "きる": ["wpnigr"],
+      "ると": ["wpnigr"],
+      "とb": ["wpnigr"],
+      "be": ["wpnigr"],
+      "ee": ["wpnigr"],
+      "保護": ["8wx6w3"],
+      "護者": ["8wx6w3"],
+      "者会": ["8wx6w3"],
       "ひあ": ["rxvxyn"],
       "あの": ["rxvxyn"],
       "の同": ["rxvxyn"],
-      "同好": ["rxvxyn", "dbwl16", "hlctmu"],
-      "好会": ["rxvxyn", "dbwl16", "hlctmu"],
-      "化学": ["2ikboe"],
-      "学班": ["2ikboe"],
-      "生物": ["dft3mr"],
-      "物班": ["dft3mr"],
-      "物理": ["72jhm3"],
-      "理班": ["72jhm3"],
-      "自然": ["9jhixf"],
-      "然科": ["9jhixf"],
-      "科学": ["9jhixf"],
-      "学部": ["9jhixf"],
-      "吹奏": ["4pcnlu"],
-      "奏楽": ["4pcnlu"],
-      "歴史": ["iik7uq"],
-      "史班": ["iik7uq"],
-      "文芸": ["tiz4np", "6rt9td"],
-      "芸班": ["tiz4np"],
-      "芸部": ["6rt9td"],
-      "囲碁": ["dbwl16"],
-      "碁将": ["dbwl16"],
-      "将棋": ["dbwl16"],
-      "棋同": ["dbwl16"],
-      "es": ["hlctmu"],
-      "ss": ["hlctmu"],
-      "s同": ["hlctmu"],
+      "同好": ["rxvxyn", "hlctmu", "dbwl16"],
+      "好会": ["rxvxyn", "hlctmu", "dbwl16"],
       "かと": ["svjbox"],
       "とり": ["svjbox"],
       "りっ": ["svjbox"],
       "っく": ["svjbox"],
       "く研": ["svjbox"],
       "究会": ["svjbox"],
+      "歴史": ["iik7uq"],
+      "史班": ["iik7uq"],
+      "文芸": ["tiz4np", "6rt9td"],
+      "芸班": ["tiz4np"],
+      "芸部": ["6rt9td"],
+      "じゃ": ["ri6coz"],
+      "ゃぐ": ["ri6coz"],
+      "ぐり": ["ri6coz"],
+      "りん": ["ri6coz"],
+      "んぐ": ["ri6coz"],
+      "ぐ部": ["ri6coz"],
+      "es": ["hlctmu"],
+      "ss": ["hlctmu"],
+      "s同": ["hlctmu"],
+      "写真": ["qmxmeo"],
+      "真班": ["qmxmeo"],
+      "術部": ["w2qsnx"],
+      "はそ": ["vipsxr"],
+      "そこ": ["vipsxr"],
+      "こん": ["vipsxr"],
+      "ん部": ["vipsxr"],
+      "昆布": ["vipsxr"],
+      "布こ": ["vipsxr"],
+      "こと": ["vipsxr"],
+      "とは": ["vipsxr"],
+      "部で": ["vipsxr"],
+      "す！": ["vipsxr"],
+      "囲碁": ["dbwl16"],
+      "碁将": ["dbwl16"],
+      "将棋": ["dbwl16"],
+      "棋同": ["dbwl16"],
+      "生物": ["dft3mr"],
+      "物班": ["dft3mr"],
+      "物理": ["72jhm3"],
+      "理班": ["72jhm3"],
+      "化学": ["2ikboe"],
+      "学班": ["2ikboe"],
+      "自然": ["9jhixf"],
+      "然科": ["9jhixf"],
+      "科学": ["9jhixf"],
+      "学部": ["9jhixf"],
+      "吹奏": ["4pcnlu"],
+      "奏楽": ["4pcnlu"],
+      "楽部": ["4pcnlu", "7t04e1"],
+      "鉄道": ["5fyptc"],
+      "道模": ["5fyptc"],
+      "模型": ["5fyptc"],
+      "型部": ["5fyptc"],
+      "軽音": ["7t04e1"],
+      "音楽": ["7t04e1"],
       "部活": ["5obyu8"],
       "活動": ["5obyu8"],
-      "ーか": ["imy22l"],
-      "かい": ["imy22l"],
-      "いぶ": ["imy22l", "zddsak"],
-      "らい": ["zddsak"],
-      "生配": ["u9y308"],
-      "配信": ["u9y308"],
+      "有志": ["8cbhhi"],
+      "志企": ["8cbhhi"],
       "02": ["k3hy28"],
       "sf": ["08cxku"]
     }
