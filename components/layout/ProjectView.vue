@@ -28,6 +28,7 @@
       :to="'/list/' + tag"
     ) {{ "#" + tag }}
     .h5(v-html="project.title")
+    PartsLikeButton(:id="project.pid").float-end
     PartsShareButton.float-end
     NuxtLink.text-muted(:to="'/@' + project.owner") {{ ownerName }}
   hr
