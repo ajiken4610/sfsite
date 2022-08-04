@@ -1,13 +1,14 @@
 <template lang="pug">
 .row.row-cols-1.row-cols-sm-2.row-cols-xl-4.g-4
   .col(v-for="(project, id) in rearrangedProjects")
-    PartsProjectCard(:project="toStrictProject(project)", :link="id")
+    PartsProjectCard(:project="toStrictProject(project)", :link="id" @click="$emit('clickProject',project.pid)")
 </template>
 
 <script async setup lang="ts">
 import { SFProject } from "~~/composables/SFProject";
 
 const props = defineProps<{ projects: SFProject[] }>();
+const emits = defineEmits<{ clickProject: (id: string) => void }>();
 
 const rearrangedProjects = await (async () => {
   const projects = props.projects;

@@ -1,10 +1,10 @@
 // useLikes
-// usePredicts
+// usePredict
 
-import { doc, getDoc, increment, updateDoc } from "firebase/firestore";
+import { doc, getDoc, increment, setDoc, updateDoc } from "firebase/firestore";
 import { SFProject } from "./SFProject";
 
-// addPredicts
+// addPredict
 export class SFProjectData {
   project: SFProject;
   uid: string;
@@ -37,4 +37,17 @@ export const onPushLike = async (id: string) => {
     await updateDoc(likeDoc, data);
   }
 };
-export const usePredicts = () => {};
+export const usePredict = (fromId: string) =>
+  useAsyncData("predict" + fromId, async () => {
+    const db = useFirestore();
+    const ref = doc(db, "predict", fromId);
+    const data = await getDoc(ref);
+    return data.data();
+  });
+
+export const incrementPredict = async (fromId: string, toId: string) => {
+  const db = useFirestore();
+  const data = { update: toId };
+  data[toId] = increment(1);
+  await setDoc(doc(db, "predict", fromId), data, { merge: true });
+};

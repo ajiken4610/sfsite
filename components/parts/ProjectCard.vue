@@ -36,6 +36,7 @@ const props = withDefaults(
   }>(),
   { horizontal: false, responsive: true }
 );
+defineEmits<{ click: (e) => void }>();
 if (!owners) {
   const newOwners = await useOwnersData();
   if (!owners) {

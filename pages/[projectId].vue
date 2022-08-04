@@ -15,6 +15,9 @@ div
   .display-1.text-center(v-if="!project") Loading...
   .project-wrapper(v-else)
     LayoutProjectView(:project="project")
+    hr
+    .h2.mb-2 おすすめの企画
+    LayoutPredictCards(v-if="project.pid" :id="project.pid")
 </template>
 
 <script setup lang="ts">
