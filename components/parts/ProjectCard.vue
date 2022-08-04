@@ -131,7 +131,4 @@ onUnmounted(() => {
 .tag:not(:first-child) {
   padding-left: 0.25em;
 }
-.card-img-overlay {
-  text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
-}
 </style>
