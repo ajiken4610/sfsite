@@ -25,7 +25,7 @@
 <script lang="ts">
 let owners, pending;
 </script>
-<script async setup lang="ts">
+<script setup lang="ts">
 import { StrictSFProject } from "~~/composables/SFProject";
 
 const props = withDefaults(
