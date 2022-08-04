@@ -18,11 +18,6 @@ router.beforeEach((to, from, next) => {
     });
   }
 });
-useHead({
-  titleTemplate: (titleChunk) => {
-    return titleChunk ? `${titleChunk} | SaleFes` : "Salesio Festa";
-  },
-});
 router.onError((error) => {
   console.log("Routing error:", error);
   alert(
@@ -38,6 +33,14 @@ window.addEventListener("hashchange", (e) => {
   } else {
     //window.scroll({ top: 0, behavior: "smooth" });
   }
+});
+const titlePrefix = "Salesio Festa";
+useHead({
+  titleTemplate: (chunk) => {
+    return chunk.match(titlePrefix)
+      ? chunk
+      : (chunk ? chunk + " | " : "") + titlePrefix;
+  },
 });
 </script>
 

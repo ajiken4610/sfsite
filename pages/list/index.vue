@@ -1,5 +1,6 @@
 <template lang="pug">
-div 
+div
+  Title 一覧
   h1 企画一覧
   PartsProjectCardList(:projects="projectList")
   h1.mt-4 所属一覧

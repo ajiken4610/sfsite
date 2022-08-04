@@ -1,5 +1,6 @@
 <template lang="pug">
 div
+  Title 検索結果: {{ $route.params.query }}
   h1.mb-4 検索結果: {{ $route.params.query }}
   h2 企画
   .mb-2

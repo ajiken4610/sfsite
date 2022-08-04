@@ -1,5 +1,6 @@
 <template lang="pug">
 div(v-if="owner")
+  Title {{ getOwnerName(data.owners, id) }}
   .card.bg-transparent.my-4
     img.card-img.border-start.position-absolute.start-0.end-0.top-0.bottom-0(
       v-if="owner.icon",
