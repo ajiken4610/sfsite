@@ -27,9 +27,13 @@ const props = withDefaults(
   { horizontal: false, responsive: true }
 );
 
-const responsiveHorizontal = ref(576 > window.innerWidth || props.horizontal);
+const responsiveHorizontal = ref(
+  props.responsive ? 576 > window.innerWidth || props.horizontal : false
+);
 const onResize = () => {
-  responsiveHorizontal.value = 576 > window.innerWidth || props.horizontal;
+  responsiveHorizontal.value = props.responsive
+    ? 576 > window.innerWidth || props.horizontal
+    : false;
 };
 window.addEventListener("resize", onResize);
 onUnmounted(() => {
