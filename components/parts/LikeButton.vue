@@ -1,11 +1,13 @@
 <template lang="pug">
 div.ms-2
-  i.h3(@click="pushLike" :class="{'bi-heart':!liked,'bi-heart-fill':liked}")
-  span {{like}}
+  i(@click="pushLike" :class="[{'bi-heart':!liked,'bi-heart-fill':liked},heartClass]")
+  span.ms-1 {{like}}
 </template>
 
 <script setup lang="ts">
-const props = defineProps<{ id: string }>();
+const props = withDefaults(defineProps<{ id: string; heartClass?: string }>(), {
+  heartClass: "h3",
+});
 const like = ref<number>();
 const liked = ref<boolean>(useLikedProjects().value.includes(props.id));
 

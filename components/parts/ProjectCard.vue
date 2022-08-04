@@ -14,7 +14,7 @@
           text(x="50%", y="50%", dy=".4em", text-anchor="middle") No thumbnail
     .card-body(:class="{ 'col-8 d-table': responsiveHorizontal }")
       div(:class="{ 'd-table-cell align-middle': responsiveHorizontal }")
-        PartsLikeButton.float-end(:id="project.pid")
+        PartsLikeButton.float-end(:id="project.pid" heartClass="text-muted")
         .card-text.tags.text-muted
           template(v-if="project.tags", v-for="tag in project.tags") {{ "#" + tag + " " }}
         .h6.card-title {{ project.title }}
