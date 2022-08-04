@@ -14,6 +14,7 @@
           text(x="50%", y="50%", dy=".4em", text-anchor="middle") No thumbnail
     .card-body(:class="{ 'col-8 d-table': responsiveHorizontal }")
       div(:class="{ 'd-table-cell align-middle': responsiveHorizontal }")
+        PartsLikeButton.float-end(:id="project.pid")
         .card-text.tags.text-muted
           template(v-if="project.tags", v-for="tag in project.tags") {{ "#" + tag + " " }}
         .h6.card-title {{ project.title }}
@@ -24,7 +25,7 @@
 <script lang="ts">
 let owners, pending;
 </script>
-<script setup lang="ts">
+<script async setup lang="ts">
 import { StrictSFProject } from "~~/composables/SFProject";
 
 const props = withDefaults(
@@ -129,5 +130,8 @@ onUnmounted(() => {
 }
 .tag:not(:first-child) {
   padding-left: 0.25em;
+}
+.card-img-overlay {
+  text-shadow: 0px 0px 10px rgba(0, 0, 0, 1);
 }
 </style>
