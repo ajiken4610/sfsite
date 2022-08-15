@@ -8,7 +8,7 @@ div
 
 <script async setup lang="ts">
 import projectData from "~~/assets/data";
-import { SFProject } from "~~/composables/SFProject.js";
+import { SFProject } from "~~/composables/SFProject";
 
 const props = defineProps<{ id: string }>();
 const predict: { [key: string]: number } = (await usePredict(props.id)).data
