@@ -66,4 +66,8 @@ a:not(:hover) {
   border-top: solid 3px white;
   border-bottom: solid 3px white;
 }
+html,
+body {
+  min-height: 100vh;
+}
 </style>
