@@ -1,6 +1,9 @@
 <template lang="pug">
 div
-  PartsProjectCardList(:projects="projects" @clickProject="incrementPredict(id,$event)")
+  PartsProjectCardList(
+    :projects="projects",
+    @clickProject="incrementPredict(id, $event)"
+  )
 </template>
 
 <script async setup lang="ts">

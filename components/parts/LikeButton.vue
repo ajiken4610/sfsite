@@ -1,7 +1,10 @@
 <template lang="pug">
-div.ms-2
-  i(@click="pushLike" :class="[{'bi-heart':!liked,'bi-heart-fill':liked},heartClass]")
-  span.ms-1 {{like}}
+.ms-2
+  i(
+    @click="pushLike",
+    :class="[{ 'bi-heart': !liked, 'bi-heart-fill': liked }, heartClass]"
+  )
+  span.ms-1 {{ like }}
 </template>
 
 <script setup lang="ts">

@@ -6,13 +6,18 @@ div
         br
         | Salesio Galuin Festival
       .display-6.text-muted サレジオ学院学園祭へようこそ
-    a.w-100.start-50.bottom-0.translate-middle-x.display-1.scroll.text-center.mb-4(href="#titles")
+    a.w-100.start-50.bottom-0.translate-middle-x.display-1.scroll.text-center.mb-4(
+      href="#titles"
+    )
   hr
   #titles
     .row.title-buttons-group.align-items-center
       .title-buttons
         div
-          PartsOwnerCard(id="k3hy28",:owner="toStrictOwner(projectData.owners.k3hy28)" :responsive="false")
+          PartsOwnerCard#k3hy28(
+            :owner="toStrictOwner(projectData.owners.k3hy28)",
+            :responsive="false"
+          )
       .title-buttons
         div
           .display-2 2022
@@ -23,10 +28,16 @@ div
           .text-muted すべてのクラス企画
       .title-buttons
         div
-          PartsOwnerCard(id="52z2zq",:owner="toStrictOwner(projectData.owners['52z2zq'])" :responsive="false")
+          PartsOwnerCard(id="52z2zq",
+            :owner="toStrictOwner(projectData.owners['52z2zq'])",
+            :responsive="false"
+          )
       .title-buttons
         div
-          PartsOwnerCard(id="zddsak",:owner="toStrictOwner(projectData.owners.zddsak)" :responsive="false")
+          PartsOwnerCard#zddsak(
+            :owner="toStrictOwner(projectData.owners.zddsak)",
+            :responsive="false"
+          )
       .title-buttons
         div
           .display-2 生配信

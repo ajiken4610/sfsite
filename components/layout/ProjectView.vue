@@ -7,7 +7,7 @@
       :to="'/list/' + tag"
     ) {{ "#" + tag }}
     h1(v-html="project.title")
-    PartsLikeButton(:id="project.pid").float-end
+    PartsLikeButton.float-end(:id="project.pid")
     PartsShareButton.float-end
     NuxtLink.h5.text-muted(:to="'/@' + project.owner") {{ ownerName }}
   .iframe-wrapper(v-if="project.type !== 'none'")
@@ -28,7 +28,7 @@
       :to="'/list/' + tag"
     ) {{ "#" + tag }}
     .h5(v-html="project.title")
-    PartsLikeButton(:id="project.pid").float-end
+    PartsLikeButton.float-end(:id="project.pid")
     PartsShareButton.float-end
     NuxtLink.text-muted(:to="'/@' + project.owner") {{ ownerName }}
   hr
