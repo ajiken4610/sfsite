@@ -7,6 +7,7 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
+    "@kevinmarrec/nuxt-pwa": "^0.4.2",
     "@nuxt/webpack-builder": "^3.0.0-rc.8",
     "@popperjs/core": "^2.11.5",
     "@prettier/plugin-pug": "^2.1.1",
