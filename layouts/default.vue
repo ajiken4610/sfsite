@@ -442,4 +442,29 @@ a:hover {
 body:not(.modal-open) {
   overflow-y: scroll;
 }
+a:not(:hover) {
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(128, 128, 128, 0.5);
+  border-radius: 3px;
+  padding: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #292929;
+  border-radius: 3px;
+  border-top: solid 3px white;
+  border-bottom: solid 3px white;
+}
+html,
+body {
+  min-height: 100vh;
+}
 </style>

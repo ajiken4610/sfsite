@@ -50,7 +50,7 @@ div
 
 <script setup lang="ts">
 import projectData from "~~/assets/data";
-const navHeight = useState("nav-height");
+const navHeight = useState("nav-height", () => 0);
 </script>
 
 <style scoped lang="scss">
