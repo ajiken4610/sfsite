@@ -4,7 +4,7 @@ div
     .start-50.w-75.top-50.translate-middle.border-start.border-2.ps-5
       h1.display-1 Welcome to
         br
-        | Salesio Galuin Festival
+        | Salesio Gakuin Festival
       .display-6.text-muted サレジオ学院学園祭へようこそ
     a.w-100.start-50.bottom-0.translate-middle-x.display-1.scroll.text-center.mb-4(
       href="#titles"
@@ -33,19 +33,25 @@ div
             :responsive="false"
           )
       .title-buttons
-        div
-          PartsOwnerCard#zddsak(
-            :owner="toStrictOwner(projectData.owners.zddsak)",
+        div 
+          PartsOwnerCard(id="5obyu8",
+            :owner="toStrictOwner(projectData.owners['5obyu8'])",
             :responsive="false"
           )
+      .title-buttons
+        div
+          .display-2 部活動
+          .text-muted すべての部活動の企画
       .title-buttons
         div
           .display-2 生配信
           .text-muted 生配信を一緒に見よう！
       .title-buttons
-        .display-1 a
-      .title-buttons
-        .display-1 a
+        div
+          PartsOwnerCard#zddsak(
+            :owner="toStrictOwner(projectData.owners.zddsak)",
+            :responsive="false"
+          )
 </template>
 
 <script setup lang="ts">

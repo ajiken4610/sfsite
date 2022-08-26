@@ -20,9 +20,6 @@ export default defineNuxtConfig({
           short_name: "SF2022",
           description: "サレ祭2022年度",
         },
-        workbox: {
-          enabled: true,
-        },
       },
     ],
   ],

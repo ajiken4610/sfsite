@@ -17,6 +17,10 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.shadow-lg(ref="headerElement")
           NuxtLink.nav-link(to="/@k3hy28", active-class="active") 2022年度
         li.nav-item
           NuxtLink.nav-link(to="/@52z2zq", active-class="active") クラス企画
+        li.nav-item
+          NuxtLink.nav-link(to="/@5obyu8", active-class="active") 部活動
+        li.nav-item
+          NuxtLink.nav-link(to="/@zddsak", active-class="active") 生配信
       .d-flex.search-box(
         :class="{ searchBoxFocused, searchBoxFocusedDelayed, 'ms-auto': !searchBoxFocused }"
       )
