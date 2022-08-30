@@ -1,21 +1,21 @@
+import { getFirestore } from "firebase/firestore";
+import { initializeAppCheck, ReCaptchaV3Provider } from "@firebase/app-check";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
-import { initializeAppCheck, ReCaptchaV3Provider } from "@firebase/app-check";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyBI9zjiD9IOYtCwag8GEPmwyiWLs9nI6iw",
-  authDomain: "salefessite.firebaseapp.com",
-  projectId: "salefessite",
-  storageBucket: "salefessite.appspot.com",
-  messagingSenderId: "655952003454",
-  appId: "1:655952003454:web:7b879d6c846a9c315e732f",
-  measurementId: "G-BPRK32XXC4",
+  apiKey: "AIzaSyD3yYbbgCjDUe5j7au6L5uC8M8niKY9R1Q",
+  authDomain: "sfsite-61b72.firebaseapp.com",
+  projectId: "sfsite-61b72",
+  storageBucket: "sfsite-61b72.appspot.com",
+  messagingSenderId: "355791110171",
+  appId: "1:355791110171:web:e511f11611dc2e331578be",
+  measurementId: "G-1CN4EYKR3R",
 };
 
 // Initialize Firebase
