@@ -51,3 +51,18 @@ export const incrementPredict = async (fromId: string, toId: string) => {
   data[toId] = increment(1);
   await setDoc(doc(db, "predict", fromId), data, { merge: true });
 };
+
+export const useMr = async () => {
+  const db = useFirestore();
+  const data = await getDoc(doc(db, "mr", "root"));
+  return data.data();
+};
+
+export const incrementMr = async (id) => {
+  const db = useFirestore();
+  const mrDoc = doc(db, "mr", "root");
+  const data = { update: id };
+  data[id] = increment(1);
+  console.log(data);
+  await updateDoc(mrDoc, data);
+};
