@@ -21,6 +21,8 @@ nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.shadow-lg(ref="headerElement")
           NuxtLink.nav-link(to="/@5obyu8", active-class="active") 部活動
         li.nav-item
           NuxtLink.nav-link(to="/@zddsak", active-class="active") 生配信
+        li.nav-item
+          NuxtLink.nav-link(to="/mr", active-class="active") Mr.Salesio
       .d-flex.search-box(
         :class="{ searchBoxFocused, searchBoxFocusedDelayed, 'ms-auto': !searchBoxFocused }"
       )
