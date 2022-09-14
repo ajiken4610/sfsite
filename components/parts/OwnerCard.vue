@@ -26,7 +26,6 @@ const props = withDefaults(
   }>(),
   { horizontal: false, responsive: true }
 );
-
 const responsiveHorizontal = ref(
   props.responsive ? 576 > window.innerWidth || props.horizontal : false
 );
