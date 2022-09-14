@@ -18,12 +18,14 @@ export const getOwnerName = (
   const owners = childRef;
   try {
     let ret: string[] = [];
-    let current = ownerId.substring(0, 6);
-    while (current) {
+    let current = ownerId;
+    const maxRec = 5;
+    let i = 0;
+    while (current && i++ < maxRec) {
       ret.unshift(owners[current].name);
       current = owners[current].parent;
     }
-    return ret.slice(Math.min(offset, Math.max(0, ret.length - 1))).join(" ");
+    return ret.slice(offset).join(" ");
   } catch (e) {
     return ownerId;
   }

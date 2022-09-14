@@ -10,17 +10,18 @@
     PartsLikeButton.float-end(:id="project.pid")
     PartsShareButton.float-end
     NuxtLink.h5.text-muted(:to="'/@' + project.owner") {{ ownerName }}
-  .iframe-wrapper(v-if="project.type !== 'none'")
-    img(v-if="project.thumbnail", :src="project.thumbnail")
-    .position-absolute.d-table.h-100.w-100 
-      .display-1.d-table-cell.align-middle.text-center Loading...
-    iframe(
-      v-if="allowLoad",
-      :src="getFrameLink(project)",
-      frameborder="0",
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-      allowfullscreen
-    )
+  template(v-if="project.type !== 'none'")
+    .iframe-wrapper
+      img(v-if="project.thumbnail", :src="project.thumbnail")
+      .position-absolute.d-table.h-100.w-100 
+        .display-1.d-table-cell.align-middle.text-center Loading...
+      iframe(
+        v-if="allowLoad",
+        :src="getFrameLink(project)",
+        frameborder="0",
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+        allowfullscreen
+      )
   .title-owner-wrapper(v-if="project.type === 'youtube'")
     NuxtLink.text-muted.tag(
       v-if="project.tags",
