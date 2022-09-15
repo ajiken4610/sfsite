@@ -25,7 +25,7 @@ export const getOwnerName = (
       ret.unshift(owners[current].name);
       current = owners[current].parent;
     }
-    console.log(ret);
+    // console.log(ret);
     return ret.length > 2 ? ret.slice(offset).join(" ") : ret.join(" ");
   } catch (e) {
     return ownerId;
