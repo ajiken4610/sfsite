@@ -9,8 +9,8 @@
     .display-1.text-center {{ name }}
     .h1.lead.text-center {{ description }}
     PartsVoteButton(:id="id", :number="data[id]", :name="name")
-  img.mr-image.d-lg-block.d-none.w-50(:src="'/mrs/' + id + '.jpg'")
-  img.mr-image.d-lg-none.d-block.w-100(:src="'/mrs/' + id + '.jpg'")
+  img.mr-image.d-lg-block.d-none.w-50(:src="'/mrs/' + id + '.JPG'")
+  img.mr-image.d-lg-none.d-block.w-100(:src="'/mrs/' + id + '.JPG'")
 </template>
 <script setup lang="ts">
 defineProps<{
