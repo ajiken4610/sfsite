@@ -13,33 +13,34 @@ import { useMr } from "~~/composables/firestore";
 const data = await useMr();
 const players = [
   {
-    name: "サレジオ太郎1",
-    description: "1ろーれむいぷさむ",
+    name: "北村 駿",
+    description: "恋っていうから愛に来た。",
     id: "Gd3M1s7XXwwE96N8uo4Y",
   },
   {
-    name: "サレジオ太郎2",
-    description: "2ろーれむいぷさむ",
+    name: "近藤 海斗",
+    description: "僕とお付き合いしましょう\n死ぬまであなたを守りますから。",
     id: "VdJiMG4qOmDH2dh9jYtP",
   },
   {
-    name: "サレジオ太郎3",
-    description: "3ろーれむいぷさむ",
+    name: "小杉 将矢",
+    description:
+      "バスケットカウント。それはたとえ邪魔が入っても君の心に愛をねじ込むことを意味する。",
     id: "j5z9HwuiAxKFFXWKPGxS",
   },
   {
-    name: "サレジオ太郎4",
-    description: "4ろーれむいぷさむ",
+    name: "佐藤 綾真",
+    description: "君の彼氏になりたい。",
     id: "qABPsaScjcqbaLZ9657R",
   },
   {
-    name: "サレジオ太郎5",
-    description: "5ろーれむいぷさむ",
+    name: "西村 優亮",
+    description: "今夜は俺様の姿を目に焼き付けて寝な。いい夢見れるぜ。",
     id: "qUg5rCwkOABiFupyKvqk",
   },
   {
-    name: "サレジオ太郎6",
-    description: "6ろーれむイプサム",
+    name: "吉田 遼人",
+    description: "俺のオフサイドトラップにかかってみないか？",
     id: "0riP4vf0IgL60UxQX462",
   },
 ];

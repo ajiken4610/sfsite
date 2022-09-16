@@ -3,14 +3,14 @@
   .flex-fill.position-relative.d-lg-block.d-none
     .position-absolute.top-50.start-50.translate-middle.w-100
       .display-1.text-center {{ name }}
-      .h1.lead.text-muted.text-center {{ description }}
+      .h1.lead.text-center {{ description }}
       PartsVoteButton(:id="id", :number="data[id]", :name="name")
   .flex-fill.d-lg-none.d-block
     .display-1.text-center {{ name }}
-    .h1.lead.text-muted.text-center {{ description }}
+    .h1.lead.text-center {{ description }}
     PartsVoteButton(:id="id", :number="data[id]", :name="name")
-  img.mr-image.d-lg-block.d-none.w-50
-  img.mr-image.d-lg-none.d-block.w-100
+  img.mr-image.d-lg-block.d-none.w-50(:src="'/player/' + id + '.jpg'")
+  img.mr-image.d-lg-none.d-block.w-100(:src="'/player/' + id + '.jpg'")
 </template>
 <script setup lang="ts">
 defineProps<{
@@ -24,6 +24,7 @@ defineProps<{
 <style scoped lang="scss">
 .mr-image {
   display: block;
-  height: 33vh;
+  border-radius: 5px;
+  margin: 0.5rem;
 }
 </style>
