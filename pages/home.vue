@@ -85,7 +85,7 @@ const navHeight = useState("nav-height", () => 0);
 .title-buttons {
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
-  height: calc(25vh - 1rem);
+  height: calc(33.333vh - 1rem);
   display: table;
 }
 .title-buttons > * {

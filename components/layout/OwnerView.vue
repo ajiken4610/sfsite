@@ -32,6 +32,9 @@ const owner = data.owners[props.id];
   filter: blur(1px);
   object-fit: cover;
 }
+.card.bg-transparent {
+  overflow: hidden;
+}
 .display-1 {
   text-shadow: rgb(0, 0, 0) 1px 0 10px;
 }
